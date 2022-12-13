@@ -1,0 +1,47 @@
+@extends('layouts.dashboard')
+@section('content')
+    <div class="breadcrumbbar">
+        <div class="row align-items-center">
+            <div class="col-md-8 col-lg-8">
+                <h4 class="page-title">About</h4>
+                <div class="breadcrumb-list">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{{route('dashboard.home')}}">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">About</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="contentbar">
+        <!-- Start row -->
+        <div class="row">
+            <!-- Start col -->
+            <div class="col-lg-12">
+                <div class="card m-b-30">
+                    <div class="card-header">
+                        <div class="row align-items-center">
+                            <div class="col-6">
+                                <h5 class="card-title mb-0">About</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="col-md-12 col-lg-12 col-xl-12">
+                            <div class="card mb-30">
+                                <div class="card-body">
+                                    <h5 class="card-title font-18 mb-4 text-capitalize">{{$about->header}} </h5>
+                                    {!! $about->content !!}
+                                    <a href="{{route('dashboard.about.edit', $about->id)}}" class="btn btn-primary mt-4">Edit</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End col -->
+        </div>
+        <!-- End row -->
+    </div>
+
+@endsection
