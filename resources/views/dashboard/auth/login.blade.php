@@ -28,23 +28,6 @@
                 <div class="row no-gutters align-items-center justify-content-center">
                     <!-- Start col -->
                     <div class="col-md-6 col-lg-5">
-                        <div class="auth-box-left">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h4>Your comminuty awaits.</h4>
-                                    <div class="auth-box-icon">
-                                        <img src="{{asset('assets/dashboard/images/authentication/auth-box-icon.svg')}}" class="img-fluid" alt="auth-box-icon">
-                                    </div>
-                                    <div class="auth-box-logo">
-                                        <img src="{{asset('assets/front/images/logo.png')}}" class="img-fluid " alt="logo">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Start end -->
-                    <!-- Start col -->
-                    <div class="col-md-6 col-lg-5">
                         <!-- Start Auth Box -->
                         <div class="auth-box-right">
                             <div class="card">
