@@ -34,24 +34,24 @@
                         @method('PUT')
                         <div class="form-group">
                             <label for="title">{{ __('admin/global.title') }}*</label>
-                            <input type="text" id="title" name="title" class="form-control" value="{{$event->title}}" required>
+                            <input type="text" id="title" name="title" class="form-control" value="{{$event->title}}" >
                             @if($errors->has('title'))
-                                {{ $errors->first('title') }}
+                                <span class="text-danger">{{ $errors->first('title') }}</span>
                             @endif
 
                         </div>
                         <div class="row">
                             <div class="form-group col-lg-6">
                                 <label for="date">{{ __('admin/global.date') }}*</label>
-                                <input type="date" id="date" name="date" class="form-control" value="{{$event->date}}" required>
+                                <input type="date" id="date" name="date" class="form-control" value="{{$event->date}}" >
                                 @if($errors->has('date'))
-                                    {{ $errors->first('date') }}
+                                    <span class="text-danger">{{ $errors->first('date') }}</span>
                                 @endif
 
                             </div>
                             <div class="form-group col-lg-6">
                                 <label for="time">{{ __('admin/global.time') }}*</label>
-                                <input type="time" id="time" name="time" class="form-control" value="{{$event->time}}" required>
+                                <input type="time" id="time" name="time" class="form-control" value="{{$event->time}}" >
                                 @if($errors->has('time'))
                                     {{ $errors->first('time') }}
                                 @endif
@@ -61,11 +61,17 @@
                         <div class="form-group mt-3">
                             <label for="summernote">{{ __('admin/global.desc') }} *</label>
                             <textarea id="summernote" name="desc" >{{$event->description}}</textarea>
+                            @if($errors->has('desc'))
+                                <span class="text-danger">{{ $errors->first('desc') }}</span>
+                            @endif
                         </div>
                         <div class="row">
                             <div class="form-group col-lg-6">
                                 <label  for="img">{{ __('admin/global.image') }}*</label>
                                 <input type="file" name="image" id="img" class="d-block">
+                                @error('image')
+                                <span class="text-danger">{{$message}}</span>
+                                @enderror
                             </div>
                             <div class="col-lg-6 col-xl-4 mt-4" style="width: auto;height: 150px">
                                 <img style="width: 150px; height: 150px" src="{{asset('events/'.$event->title.'/'.$event->image)}}" alt=" event Image" class="rounded " id="image">

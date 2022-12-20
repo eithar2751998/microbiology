@@ -18,6 +18,12 @@
         <div class="row">
             <!-- Start col -->
             <div class="col-lg-12">
+                @if(session('success'))
+                    <div class="alert alert-success" id="alert">{{session('success')}}</div>
+                @endif
+                @if(session('error'))
+                    <div class="alert alert-danger" id="alert">{{session('error')}}</div>
+                @endif
                 <div class="card m-b-30">
                     <div class="card-header">
                         <div class="row align-items-center">
@@ -133,9 +139,7 @@
     <!-- Model js -->
     <script src="{{asset('assets/dashboard/js/custom/custom-model.js')}}"></script>
     <script type="text/javascript">
-
         $(document).ready(function () {
-
             /* When click show user */
             $('body').on('click', ' #show-dept', function () {
                 var deptURL = $(this).data('url');
@@ -150,6 +154,10 @@
             });
 
         });
-
+    </script>
+    <script>
+        setTimeout(function() {
+            $('#alert').fadeOut('fast');
+        }, 3000);
     </script>
 @endsection

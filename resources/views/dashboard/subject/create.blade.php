@@ -26,29 +26,31 @@
                         <div class="row">
                             <div class="form-group col-lg-6">
                                 <label for="name">{{ __('admin/global.name') }}*</label>
-                                <input type="text" id="name" name="name" class="form-control" value="{{ old('name', isset($Subject) ? $Subject->name : '') }}" required>
-                                @if($errors->has('username'))
-                                    {{ $errors->first('username') }}
-                                @endif
+                                <input type="text" id="name" name="name" class="form-control" value="{{ old('name', isset($Subject) ? $Subject->name : '') }}" >
+                                @error('name')
+                                <span class="text-danger">{{$message}}</span>
+                                @enderror
 
                             </div>
                             <div class="form-group col-lg-6">
                                 <label for="department">{{ __('admin/global.department') }}*</label>
-                                <select name="department" id="department" class="select2 form-control" required>
+                                <select name="department" id="department" class="select2 form-control" >
                                     @foreach($departments as  $department)
                                         <option value="{{ $department->id }}">{{ $department->name }}</option>
                                     @endforeach
                                 </select>
-                                @if($errors->has('username'))
-                                    {{ $errors->first('username') }}
-                                @endif
-
+                                @error('department')
+                                <span class="text-danger">{{$message}}</span>
+                                @enderror
                             </div>
                         </div>
                         <div class="row">
                             <div class="form-group col-lg-6">
                                 <label  for="img">{{ __('admin/global.image') }}*</label>
                                 <input type="file" name="image" id="img" class="d-block">
+                                @error('image')
+                                <span class="text-danger">{{$message}}</span>
+                                @enderror
                             </div>
                             <div class="col-lg-6 col-xl-4 mt-4" style="width: auto;height: 150px">
                                 <img style="width: 150px; height: 150px" src="" alt=" Topic Image" class="rounded " id="image">

@@ -32,11 +32,10 @@
                         @method('PUT')
                         <div class="form-group">
                             <label for="title">{{ __('admin/global.title') }}*</label>
-                            <input type="text" id="title" name="title" class="form-control" value="{{$question->title}}" required>
+                            <input type="text" id="title" name="title" class="form-control" value="{{$question->title}}" >
                             @if($errors->has('title'))
-                                {{ $errors->first('title') }}
+                                <span class="text-danger">{{ $errors->first('title') }}</span>
                             @endif
-
                         </div>
                         <div class="form-group">
                             <label for="subjects">{{ __('admin/question.subjects') }}*</label>
@@ -46,7 +45,7 @@
                                 @endforeach
                             </select>
                             @if($errors->has('title'))
-                                {{ $errors->first('title') }}
+                                <span class="text-danger"> {{ $errors->first('title') }} </span>
                             @endif
 
                         </div>

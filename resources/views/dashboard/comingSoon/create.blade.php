@@ -33,9 +33,9 @@
                         @csrf
                         <div class="form-group">
                             <label for="title">{{ __('admin/global.title') }}*</label>
-                            <input type="text" id="title" name="title" class="form-control" value="" required>
+                            <input type="text" id="title" name="title" class="form-control" value="" >
                             @if($errors->has('title'))
-                                {{ $errors->first('title') }}
+                               <span class="text-danger">{{ $errors->first('title') }}</span>
                             @endif
 
                         </div>
@@ -43,11 +43,17 @@
                         <div class="form-group mt-3">
                             <label for="summernote">{{ __('admin/global.desc') }} *</label>
                             <textarea id="summernote" name="desc" ></textarea>
+                            @if($errors->has('desc'))
+                                <span class="text-danger">{{ $errors->first('desc') }}</span>
+                            @endif
                         </div>
                         <div class="row">
                             <div class="form-group col-lg-6">
                                 <label  for="img">{{ __('admin/global.image') }}*</label>
                                 <input type="file" name="image" id="img" class="d-block">
+                                @if($errors->has('image'))
+                                    <span class="text-danger">{{ $errors->first('image') }}</span>
+                                @endif
                             </div>
                             <div class="col-lg-6 col-xl-4 mt-4" style="width: auto;height: 150px">
                                 <img style="width: 150px; height: 150px" src="" alt=" Coming Image" class="rounded " id="image">

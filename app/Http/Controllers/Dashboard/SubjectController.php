@@ -12,6 +12,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Validator;
 
 class SubjectController extends Controller
 {
@@ -35,7 +36,7 @@ class SubjectController extends Controller
     public function create(): View|Factory|Application
     {
 
-        $departments = Department::all();
+        $departments = Department::where('status',1)->get();
         return view('dashboard.subject.create',compact('departments'));
     }
 
@@ -48,6 +49,16 @@ class SubjectController extends Controller
     public function store(Request $request): RedirectResponse
     {
         try {
+            $validate = Validator::make($request->all(), [
+                'name'          => 'required',
+                'department'    => 'required',
+                'image'     => 'mimes:jpeg,jpg,png|required'
+            ],[
+                'image.mimes'       =>'jpeg or jpg or png'
+            ]);
+            if ($validate->fails()){
+                return back()->withErrors($validate->errors())->withInput();
+            }
             if ($request->hasfile('image')) {
                 $name = $request->image->getClientOriginalName();
                 $request->image->move(public_path() . '/subjects/' . $request->name . '/', $name);
@@ -108,26 +119,46 @@ class SubjectController extends Controller
      */
     public function update(Request $request, Subject $subject): RedirectResponse
     {
-
-        $subject->update($request->all());
-
-        if($request->image != ''){
-            $path = public_path().'/subjects/';
-
-            //code for remove old file
-            if($subject->image != ''  && $subject->image != null){
-                $file_old = $path.$subject->name.'/'.$subject->file;
-                File::delete($file_old);
+        try {
+            $validate = Validator::make($request->all(), [
+                'name'          => 'required',
+                'image'         => 'mimes:jpeg,jpg,png'
+            ],[
+                'image.mimes'       =>'jpeg or jpg or png'
+            ]);
+            if ($validate->fails()){
+                return back()->withErrors($validate->errors())->withInput();
             }
-            //upload new file
-            $file = $request->image;
-            $filename = $file->getClientOriginalName();
-            $file->move($path.$subject->name.'/', $filename);
 
-            //for update in table
-            $subject->update(['image' => $filename]);
+            if ($subject->update($request->all())){
+                if($request->image != ''){
+                $path = public_path().'/subjects/';
+
+                //code for remove old file
+                if($subject->image != ''  && $subject->image != null){
+                    $file_old = $path.$subject->name.'/'.$subject->file;
+                    File::delete($file_old);
+                }
+                //upload new file
+                $file = $request->image;
+                $filename = $file->getClientOriginalName();
+                $file->move($path.$subject->name.'/', $filename);
+
+                //for update in table
+                $subject->update(['image' => $filename]);
+            }
+                return redirect()->route('dashboard.subjects.index')
+                    ->with(['success' => __('global.success_update')]);
+            }
+            else{
+                return redirect()->route('dashboard.subjects.index')
+                    ->with(['error' => __('global.error_update')]);
+            }
         }
-        return redirect()->route('dashboard.subjects.index');
+        catch (\Exception $e){
+            return redirect()->route('dashboard.subjects.index')
+                ->with(['error' => __('global.data_error')]);
+        }
     }
 
     /**
@@ -138,8 +169,15 @@ class SubjectController extends Controller
      */
     public function destroy(Subject $subject): RedirectResponse
     {
-        $subject->forceDelete();
-        return redirect()->route('dashboard.subjects.index');
+        if($subject->forceDelete()){
+            return redirect()->route('dashboard.subjects.index')
+                ->with(['success' => __('global.success_force_delete')]);
+        }
+        else{
+            return redirect()->route('dashboard.subjects.index')
+                ->with(['error' => __('global.error_force_delete')]);
+        }
+
     }
 
     public function changeStatus(Subject $subject): RedirectResponse

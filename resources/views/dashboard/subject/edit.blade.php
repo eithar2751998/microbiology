@@ -27,21 +27,21 @@
                         <div class="row">
                             <div class="form-group col-lg-6">
                                 <label for="name">{{ __('admin/global.name') }}*</label>
-                                <input type="text" id="name" name="name" class="form-control" value="{{$subject->name}}" required>
+                                <input type="text" id="name" name="name" class="form-control" value="{{$subject->name}}" >
                                 @if($errors->has('name'))
-                                    {{ $errors->first('name') }}
+                                   <span class="text-danger">{{ $errors->first('name') }}</span>
                                 @endif
 
                             </div>
                             <div class="form-group col-lg-6">
                                 <label for="department">{{ __('admin/global.department') }}*</label>
-                                <select name="department_id" id="department" class="select2 form-control" required>
+                                <select name="department_id" id="department" class="select2 form-control" >
                                     @foreach($departments as  $department)
                                         <option value="{{ $department->id }}" {{$subject->department_id == $department->id ? 'selected' : ''}} >{{ $department->name }}</option>
                                     @endforeach
                                 </select>
                                 @if($errors->has('department'))
-                                    {{ $errors->first('department') }}
+                                    <span class="text-danger"> {{ $errors->first('department') }}</span>
                                 @endif
 
                             </div>

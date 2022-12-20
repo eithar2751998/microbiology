@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Dashboard\QuestionRequest;
 use App\Models\Answer;
 use App\Models\Question;
 use App\Models\Subject;
@@ -13,7 +14,9 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Validator;
 use PhpParser\Node\Expr\New_;
+use PHPUnit\Exception;
 
 class QuestionController extends Controller
 {
@@ -43,12 +46,12 @@ class QuestionController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
+     * @param QuestionRequest $request
      * @return RedirectResponse
      */
-    public function store(Request $request)
+    public function store(QuestionRequest $request): RedirectResponse
     {
-//        dd($request);
+
         try {
             $question=new Question();
             $question->title=$request->title;
@@ -127,42 +130,82 @@ class QuestionController extends Controller
      * @param  int  $id
      * @return RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id): RedirectResponse
     {
-        $question = Question::find($id);
-        $question->update(['title'=>$request->title]);
-        if ($request->hasfile('image')) {
-            $name = $request->image->getClientOriginalName();
-            $request->image->move(public_path() . '/questions/' . $request->title . '/', $name);
-            $question->update(['image' => $name]);
+        $validate = Validator::make($request->all(), [
+            'title'         => 'required|min:5',
+            'image'         => 'mimes:jpeg,jpg,png',
+            'text'          => 'required',
+            'subjects'      => 'required'
+        ],[
+            'image.mimes'       =>'jpeg or jpg or png'
+        ]);
+        if ($validate->fails()){
+            return back()->withErrors($validate->errors())->withInput();
         }
-        $question->subjects()->sync($request->subjects);
 
-        $answers = $question->answers()->get();
-        $answersCount = $answers->count();
-        $newAnswersCount = count($request->text);
+        try {
+            $question = Question::find($id);
+            $question->update(['title'=>$request->title]);
+            if ($request->hasfile('image')) {
+                $name = $request->image->getClientOriginalName();
+                $request->image->move(public_path() . '/questions/' . $request->title . '/', $name);
+                $question->update(['image' => $name]);
+            }
+            $question->subjects()->sync($request->subjects);
 
-        if ($newAnswersCount < $answersCount){
-            foreach ($request->text as $key => $newAnswer){
+            $answers = $question->answers()->get();
+            $answersCount = $answers->count();
+            $newAnswersCount = count($request->text);
 
-                if ( $key+1 < $newAnswersCount){
-                    $answers[$key]->update(['text' => $newAnswer]);
-                    if ($request->correct == $key){
-                         $answers[$key]->update(['correct' => 1]);
+            if ($newAnswersCount < $answersCount){
+                foreach ($request->text as $key => $newAnswer){
+
+                    if ( $key+1 < $newAnswersCount){
+                        $answers[$key]->update(['text' => $newAnswer]);
+                        if ($request->correct == $key){
+                            $answers[$key]->update(['correct' => 1]);
+                        }
+                        else {
+                            $answers[$key]->update(['correct' => 0]);
+                        }
                     }
-                    else {
-                         $answers[$key]->update(['correct' => 0]);
+                    else{
+                        $answers[$key]->delete();
                     }
-                }
-                else{
-                    $answers[$key]->delete();
                 }
             }
-        }
-        elseif ($newAnswersCount > $answersCount){
-            foreach ($request->text as $key => $newAnswer){
+            elseif ($newAnswersCount > $answersCount){
+                foreach ($request->text as $key => $newAnswer){
 
-                if ( $key+1 < $newAnswersCount){
+                    if ( $key+1 < $newAnswersCount){
+                        $answers[$key]->update(['text' => $newAnswer]);
+                        if ($request->correct == $key){
+                            $answers[$key]->update(['correct' => 1]);
+                        }
+                        else {
+                            $answers[$key]->update(['correct' => 0]);
+                        }
+                    }
+                    else{
+                        $answer = new Answer();
+                        $answer->text = $newAnswer;
+                        $answer->question_id = $question->id;
+
+                        if ($request->correct == $key){
+                            $answer->correct = 1;
+                        }
+                        else {
+                            $answer->correct = 0;
+                        }
+
+                        $answer->save();
+                    }
+                }
+
+            }
+            else{
+                foreach ($request->text as $key => $newAnswer){
                     $answers[$key]->update(['text' => $newAnswer]);
                     if ($request->correct == $key){
                         $answers[$key]->update(['correct' => 1]);
@@ -171,37 +214,16 @@ class QuestionController extends Controller
                         $answers[$key]->update(['correct' => 0]);
                     }
                 }
-                else{
-                    $answer = new Answer();
-                    $answer->text = $newAnswer;
-                    $answer->question_id = $question->id;
-
-                    if ($request->correct == $key){
-                        $answer->correct = 1;
-                    }
-                    else {
-                        $answer->correct = 0;
-                    }
-
-                    $answer->save();
-                }
             }
 
+            return redirect()->route('dashboard.question.index')
+                ->with(['success'=> __('global.success_update')]);
         }
-        else{
-            foreach ($request->text as $key => $newAnswer){
-                 $answers[$key]->update(['text' => $newAnswer]);
-                 if ($request->correct == $key){
-                     $answers[$key]->update(['correct' => 1]);
-                 }
-                 else {
-                     $answers[$key]->update(['correct' => 0]);
-                 }
-            }
+        catch (Exception $e){
+            return redirect()->route('dashboard.question.index')
+                ->with(['error'=> __('global.data_error')]);
         }
 
-        return redirect()->route('dashboard.question.index')
-            ->with(['success'=> __('global.success_update')]);
     }
 
     /**
@@ -213,17 +235,29 @@ class QuestionController extends Controller
     public function destroy($id): RedirectResponse
     {
         $question = Question::find($id);
-        $question->delete();
-        return redirect()->route('dashboard.question.index');
+        if ($question->delete())
+            return redirect()->route('dashboard.question.index')
+                ->with(['success' => __('global.success_delete')]);
+        else
+            return redirect()->route('dashboard.question.index')
+                ->with(['error' => __('global.error_delete')]);
     }
     public function forceDelete($id): RedirectResponse
     {
-        Question::withTrashed()->find($id)->forceDelete();
-        return redirect()->route('dashboard.question.index');
+        if (Question::withTrashed()->find($id)->forceDelete())
+            return redirect()->route('dashboard.question.index')
+                ->with(['success' => __('global.success_force_delete')]);
+        else
+            return redirect()->route('dashboard.question.index')
+                ->with(['error' => __('global.error_force_delete')]);
     }
     public function restore($id): RedirectResponse
     {
-        Question::withTrashed()->find($id)->restore();
-        return redirect()->route('dashboard.question.index');
+        if (Question::withTrashed()->find($id)->restore())
+            return redirect()->route('dashboard.question.index')
+                ->with(['success' => __('global.success_restore')]);
+        else
+            return redirect()->route('dashboard.question.index')
+                ->with(['error' => __('global.error_restore')]);
     }
 }

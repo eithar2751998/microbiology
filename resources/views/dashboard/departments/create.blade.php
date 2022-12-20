@@ -25,15 +25,18 @@
                         @csrf
                         <div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
                             <label for="name">{{ __('admin/global.name') }}*</label>
-                            <input type="text" id="name" name="name" class="form-control" value="{{ old('name', isset($admin) ? $admin->name : '') }}" required>
-                            @if($errors->has('username'))
-                                {{ $errors->first('username') }}
+                            <input type="text" id="name" name="name" class="form-control" value="{{ old('name', isset($admin) ? $admin->name : '') }}" >
+                            @if($errors->has('name'))
+                                <span class="text-danger">{{ $errors->first('name') }}</span>
                             @endif
 
                         </div>
                         <div class="form-group {{ $errors->has('image') ? 'has-error' : '' }}">
                             <label  for="image">{{ __('admin/global.image') }}*</label>
                             <input type="file" name="image" id="image" class="d-block">
+                            @if($errors->has('image'))
+                                <span class="text-danger">{{ $errors->first('image') }}</span>
+                            @endif
                         </div>
                         <div>
                             <input class="btn btn-default" type="submit" value="{{ trans('global.save') }}">

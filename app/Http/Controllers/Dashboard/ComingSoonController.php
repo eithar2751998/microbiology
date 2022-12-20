@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Dashboard\CommingSoonRequest;
 use App\Models\Commingsoon;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Routing\ResponseFactory;
@@ -13,6 +14,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 class ComingSoonController extends Controller
 {
@@ -40,18 +42,17 @@ class ComingSoonController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
+     * @param CommingSoonRequest $request
      * @return RedirectResponse
      */
-    public function store(Request $request): RedirectResponse
+    public function store(CommingSoonRequest $request): RedirectResponse
     {
-        if ($request->hasfile('image')) {
-            $name = $request->image->getClientOriginalName();
-            $request->image->move(public_path() . '/comingSoon/' . $request->title . '/', $name);
-            $image = $name;
-        }
-
         try {
+            if ($request->hasfile('image')) {
+                $name = $request->image->getClientOriginalName();
+                $request->image->move(public_path() . '/comingSoon/' . $request->title . '/', $name);
+                $image = $name;
+            }
             $coming = new Commingsoon();
             $coming->title = $request->title;
             $coming->description = $request->desc;
@@ -102,27 +103,47 @@ class ComingSoonController extends Controller
      */
     public function update(Request $request, $id): RedirectResponse
     {
-        $comingSoon = Commingsoon::findOrFail($id);
-
-        $comingSoon->update($request->all());
-
-        if ($request->image != '') {
-            $path = public_path() . '/comingSoon/';
-
-            //code for remove old file
-            if ($comingSoon->image != '' && $comingSoon->image != null) {
-                $file_old = $path . $comingSoon->title . '/' . $comingSoon->image;
-//                dd($file_old);
-                Storage::disk('public')->delete($file_old);
+        try {
+            $validate = Validator::make($request->all(), [
+                'title'          => 'required|min:5',
+                'desc'           => 'required',
+                'image'          => 'mimes:jpeg,jpg,png',
+            ],[
+                'image.mimes'    =>'jpeg or jpg or png'
+            ]);
+            if ($validate->fails()){
+                return back()->withErrors($validate->errors())->withInput();
             }
-            //upload new file
-            $name = $request->image->getClientOriginalName();
-            $request->image->move($path . $request->title . '/', $name);
-            $comingSoon->update(['image' => $name]);
+
+            $comingSoon = Commingsoon::findOrFail($id);
+
+            if ( $comingSoon->update($request->all())){
+
+                if ($request->image != '') {
+                    $path = public_path() . '/comingSoon/';
+
+                    //code for remove old file
+                    if ($comingSoon->image != '' && $comingSoon->image != null) {
+                        $file_old = $path . $comingSoon->title . '/' . $comingSoon->image;
+//                dd($file_old);
+                        Storage::disk('public')->delete($file_old);
+                    }
+                    //upload new file
+                    $name = $request->image->getClientOriginalName();
+                    $request->image->move($path . $request->title . '/', $name);
+                    $comingSoon->update(['image' => $name]);
+                }
+                return redirect()->route('dashboard.coming.index')
+                    ->with(['success' => __('global.success_update')]);
+            }
+            else
+                return redirect()->route('dashboard.coming.index')
+                    ->with(['error' => __('global.error_update')]);
         }
-
-        return redirect()->route('dashboard.coming.index');
-
+        catch (\Exception $e){
+            return redirect()->route('dashboard.coming.index')
+                ->with(['error' => __('global.data_error')]);
+        }
     }
 
     /**
@@ -134,8 +155,12 @@ class ComingSoonController extends Controller
     public function destroy($id): RedirectResponse
     {
         $comingSoon = Commingsoon::findOrFail($id);
-        $comingSoon->forceDelete();
-        return redirect()->route('dashboard.coming.index');
+        if ($comingSoon->forceDelete())
+            return redirect()->route('dashboard.coming.index')
+                ->with(['success' => __('global.success_force_delete')]);
+        else
+            return redirect()->route('dashboard.coming.index')
+                ->with(['error' => __('global.error_force_delete')]);
     }
 
     public function changeStatus($id): RedirectResponse

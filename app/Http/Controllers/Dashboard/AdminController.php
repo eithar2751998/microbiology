@@ -185,7 +185,7 @@ class AdminController extends Controller
         }
         else {
             return redirect()->route('dashboard.admins.index')
-                ->with(['success'=>__('global.error_force_delete')]);
+                ->with(['error'=>__('global.error_force_delete')]);
         }
 
 
@@ -200,7 +200,7 @@ class AdminController extends Controller
         }
         else {
             return redirect()->route('dashboard.admins.index')
-                ->with(['success'=>__('global.error_restore')]);
+                ->with(['error'=>__('global.error_restore')]);
         }
     }
 }

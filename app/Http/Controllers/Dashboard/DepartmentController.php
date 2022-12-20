@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Dashboard\DepartmentRequest;
 use App\Models\Admin;
 use App\Models\Department;
 use Illuminate\Contracts\Foundation\Application;
@@ -12,6 +13,8 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Validator;
+use PharIo\Manifest\Exception;
 
 class DepartmentController extends Controller
 {
@@ -41,21 +44,22 @@ class DepartmentController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
+     * @param DepartmentRequest $request
      * @return RedirectResponse
      */
-    public function store(Request $request): RedirectResponse
+    public function store(DepartmentRequest $request): RedirectResponse
     {
-        if ($request->hasfile('image')) {
-            $name = $request->image->getClientOriginalName();
-            $request->image->move(public_path() . '/departments/' . $request->name . '/', $name);
-            $image = $name;
-        }
-
         try {
+            if ($request->hasfile('image')) {
+                $name = $request->image->getClientOriginalName();
+                $request->image->move(public_path() . '/departments/' . $request->name . '/', $name);
+                $image = $name;
+            }
+
             $department = new Department();
             $department->name = $request->name;
             $department->image = $image;
+
 
             if ($department->save()) {
                 return redirect()->route('dashboard.dept.index')->with(['success' => __('global.success_save')]);
@@ -102,25 +106,51 @@ class DepartmentController extends Controller
      */
     public function update(Request $request, Department $department): RedirectResponse
     {
-        $department->update($request->all());
-
-        if($request->image != ''){
-            $path = public_path().'/department/';
-
-            //code for remove old file
-            if($department->image != ''  && $department->image != null){
-                $file_old = $path.$department->name.'/'.$department->file;
-                File::delete($file_old);
+        try {
+            $validate = Validator::make($request->all(), [
+                'name'      => 'required|min:5',
+                'image'     => 'mimes:jpeg,jpg,png',
+            ],[
+                'image.mimes'       =>'jpeg or jpg or png'
+            ]);
+            if ($validate->fails()){
+                return back()->withErrors($validate->errors())->withInput();
             }
-            //upload new file
-            $file = $request->image;
-            $filename = $file->getClientOriginalName();
-            $file->move($path.$department->name.'/', $filename);
 
-            //for update in table
-            $department->update(['image' => $filename]);
+            if ($department->update($request->all())){
+                if($request->image != ''){
+                    $path = public_path().'/department/';
+
+                    //code for remove old file
+                    if($department->image != ''  && $department->image != null){
+                        $file_old = $path.$department->name.'/'.$department->file;
+                        File::delete($file_old);
+                    }
+                    //upload new file
+                    $file = $request->image;
+                    $filename = $file->getClientOriginalName();
+                    $file->move($path.$department->name.'/', $filename);
+
+                    //for update in table
+                    $department->update(['image' => $filename]);
+                }
+                return redirect()->route('dashboard.dept.index')
+                    ->with(['success' => __('global.success_update')]);
+            }
+            else{
+                return redirect()->route('dashboard.dept.index')
+                    ->with(['error' => __('global.error_update')]);
+            }
         }
-        return redirect()->route('dashboard.dept.index');
+        catch (Exception $e){
+            return redirect()->route('dashboard.dept.index')
+                ->with(['success' => __('global.data_error')]);
+        }
+
+
+
+
+
     }
 
     /**
@@ -131,9 +161,14 @@ class DepartmentController extends Controller
      */
     public function destroy(Department $department): RedirectResponse
     {
-        $department->forceDelete();
+        if ($department->forceDelete())
+            return redirect()->route('dashboard.dept.index')
+                ->with(['success' => __('global.success_force_delete')]);
 
-        return redirect()->route('dashboard.dept.index');
+        else
+            return redirect()->route('dashboard.dept.index')
+                ->with(['error' => __('global.error_force_delete')]);
+
     }
 
     public function changeStatus(Department $department): RedirectResponse

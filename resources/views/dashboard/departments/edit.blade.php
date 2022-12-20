@@ -27,19 +27,23 @@
                         <div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
                             <label for="name">{{ __('admin/global.name') }}*</label>
                             <input type="text" id="name" name="name" class="form-control" value="{{$department->name}}" required>
-                            @if($errors->has('username'))
-                                {{ $errors->first('username') }}
-                            @endif
+                            @error('name')
+                            <span class="text-danger">{{$message}}</span>
+                            @enderror
 
                         </div>
                         <div class="row">
                             <div class="form-group col-lg-6  {{ $errors->has('image') ? 'has-error' : '' }}">
                                 <label  for="img">{{ __('admin/global.image') }}*</label>
                                 <input type="file" name="image" id="img" class="d-block">
+                                @error('image')
+                                <span class="text-danger">{{$message}}</span>
+                                @enderror
                             </div>
                             <div class="col-lg-6 col-xl-4">
                                 <img style="width: 200px; height: 200px" src="{{asset('departments/'.$department->name.'/'.$department->image)}}" alt="Rounded Image" class="rounded" id="image">
                             </div>
+
                         </div>
                         <div>
                             <input class="btn btn-default" type="submit" value="{{ trans('global.save') }}">

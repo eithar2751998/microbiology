@@ -31,9 +31,9 @@
                         @csrf
                         <div class="form-group">
                             <label for="title">{{ __('admin/global.title') }}*</label>
-                            <input type="text" id="title" name="title" class="form-control" value="" required>
+                            <input type="text" id="title" name="title" class="form-control" value="" >
                             @if($errors->has('title'))
-                                {{ $errors->first('title') }}
+                                <span class="text-danger">{{ $errors->first('title') }}</span>
                             @endif
 
                         </div>
@@ -44,8 +44,8 @@
                                     <option value="{{$subject->id}}">{{$subject->name}}</option>
                                 @endforeach
                             </select>
-                            @if($errors->has('title'))
-                                {{ $errors->first('title') }}
+                            @if($errors->has('subjects'))
+                                <span class="text-danger">{{ $errors->first('subjects') }}</span>
                             @endif
 
                         </div>
@@ -65,6 +65,9 @@
                                     </td>
                                 </tr>
                             </table>
+                            @if($errors->has('text'))
+                                <span class="text-danger">{{ $errors->first('text') }}</span>
+                            @endif
                         </div>
 
                         <div class="row">
