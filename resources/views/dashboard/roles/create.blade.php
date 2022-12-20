@@ -25,22 +25,20 @@
                         @csrf
                         <div class="form-group {{ $errors->has('name') ? 'has-error' : '' }} col-md-8">
                             <label for="name">{{ __('admin/role.title') }}</label>
-                            <input type="text" id="name" name="name" class="form-control" value="{{ old('name', isset($role) ? $role->name : '') }}" required>
-                            @if($errors->has('name'))
-                                    {{ $errors->first('name') }}
+                            <input type="text" id="name" name="name" class="form-control" value="{{ old('name', isset($role) ? $role->name : '') }}">
+                            @if ($errors->has('name'))
+                                <span class="text-danger">{{ $errors->first('name') }}</span>
                             @endif
                         </div>
                         <div class="form-group {{ $errors->has('permissions') ? 'has-error' : '' }} col-md-8">
                             <label for="permission">Role Permessions</label>
-                            <select name="permission[]" id="permission" class="select2-multi-select form-control" multiple="multiple"  required>
+                            <select name="permission[]" id="permission" class="select2-multi-select form-control" multiple="multiple"  >
                                 @foreach($permissions as $id => $permission)
-                                    <option value="{{ $id }}" {{ (in_array($id, old('permission', [])) || isset($role) && $role->permissions->contains($id)) ? 'selected' : '' }}>{{ $permissions }}</option>
+                                    <option value="{{ $id }}" >{{ $permission }}</option>
                                 @endforeach
                             </select>
                             @if($errors->has('permission'))
-                                <em class="invalid-feedback">
-                                    {{ $errors->first('permission') }}
-                                </em>
+                                <span class="text-danger">{{ $errors->first('permission') }}</span>
                             @endif
 
                         </div>

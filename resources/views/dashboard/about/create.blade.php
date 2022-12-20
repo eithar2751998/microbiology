@@ -33,13 +33,18 @@
                         @csrf
                         <div class="form-group {{ $errors->has('header') ? 'has-error' : '' }}">
                             <label for="header">{{ __('admin/about.header') }} *</label>
-                            <input type="text" id="header" name="header" class="form-control" value="" required>
+                            <input type="text" id="header" name="header" class="form-control"  >
                             @if($errors->has('header'))
-                                {{ $errors->first('header') }}
+                                <span class="text-danger">{{ $errors->first('header') }}</span>
+
                             @endif
                                 <div class="form-group mt-3">
                                     <label for="summernote">{{ __('admin/about.content') }} *</label>
                                     <textarea id="summernote" name="about" ></textarea>
+                                    @if($errors->has('about'))
+                                        <span class="text-danger">{{ $errors->first('about') }}</span>
+
+                                    @endif
                                 </div>
                             </div>
                         <div>

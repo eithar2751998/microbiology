@@ -102,4 +102,8 @@
     </div>
 @endsection
 @section('scripts')
+    <script>
+        setTimeout(function() {
+            $('#alert').fadeOut('fast');
+        }, 3000);
 @endsection

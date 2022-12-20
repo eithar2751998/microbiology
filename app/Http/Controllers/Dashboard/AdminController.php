@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Dashboard\AdminRequest;
 use App\Models\Admin;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -11,6 +12,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 use Spatie\Permission\Models\Role;
 
 class AdminController extends Controller
@@ -47,10 +49,10 @@ class AdminController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
+     * @param AdminRequest $request
      * @return RedirectResponse
      */
-    public function store(Request $request): RedirectResponse
+    public function store(AdminRequest $request): RedirectResponse
     {
         try {
             $admin=new Admin();
@@ -69,7 +71,7 @@ class AdminController extends Controller
                 return redirect()->back()->with(['error'=> __('global.error_save')]);
             }
         } catch (\Exception $e) {
-            return redirect()->route('dashboard.admin.index')->
+            return redirect()->route('dashboard.admins.index')->
             with(['error'=> __('global.data_error')]);
         }
     }
@@ -108,11 +110,34 @@ class AdminController extends Controller
      */
     public function update(Request $request, Admin $admin): RedirectResponse
     {
-        $admin->update($request->all());
-        $roles = $request->input('roles') ? $request->input('roles') : [];
-        $admin->roles()->detach();
-        $admin->assignRole($roles);
-        return redirect()->route('dashboard.admins.index');
+        try {
+            $validate = Validator::make($request->all(), [
+                'name'      => 'required|min:5',
+                'email'     => 'required',
+                'roles'     => 'required'
+            ]);
+            if ($validate->fails()){
+                return back()->withErrors($validate->errors())->withInput();
+            }
+            if ( $admin->update($request->all()) ){
+                $roles = $request->input('roles') ? $request->input('roles') : [];
+                $admin->roles()->detach();
+                $admin->assignRole($roles);
+                return redirect()->route('dashboard.admins.index')
+                    ->with(['success'=> __('global.success_update')]);
+            }
+            else{
+                return redirect()->route('dashboard.admins.index')
+                    ->with(['error'=> __('global.error_update')]);
+            }
+        }
+        catch (\Exception $e) {
+            return redirect()->route('dashboard.admins.index')->
+            with(['error'=> __('global.data_error')]);
+        }
+
+
+
     }
 
     /**
@@ -123,9 +148,16 @@ class AdminController extends Controller
      */
     public function destroy(Admin $admin): RedirectResponse
     {
-        $admin->delete();
+        if ($admin->delete()){
+            return redirect()->route('dashboard.admins.index')
+                ->with(['success'=> __('global.success_delete')]);
+        }
+        else{
+            return redirect()->route('dashboard.admins.index')
+                ->with(['error'=> __('global.error_delete')]);
+        }
 
-        return redirect()->route('dashboard.admins.index');
+
     }
     public function changeStatus(Admin $admin)
     {
@@ -144,17 +176,31 @@ class AdminController extends Controller
         }
     }
 
-    public function forceDelete(Admin $admin)
+    public function forceDelete($id): RedirectResponse
     {
+        $admin = Admin::withTrashed()->find($id);
+        if ($admin->forceDelete()){
+            return redirect()->route('dashboard.admins.index')
+                ->with(['success'=>__('global.success_force_delete')]);
+        }
+        else {
+            return redirect()->route('dashboard.admins.index')
+                ->with(['success'=>__('global.error_force_delete')]);
+        }
 
-        $admin->forceDelete();
 
-        return redirect()->route('dashboard.admins.index');
+
     }
 
-    public function restore(Admin $admin)
+    public function restore($id): RedirectResponse
     {
-        $admin->withTrashed()->update(['deleted_at' => null]);
-        return back();
+        if (Admin::withTrashed()->find($id)->restore()){
+            return redirect()->route('dashboard.admins.index')
+                ->with(['success'=>__('global.success_restore')]);
+        }
+        else {
+            return redirect()->route('dashboard.admins.index')
+                ->with(['success'=>__('global.error_restore')]);
+        }
     }
 }

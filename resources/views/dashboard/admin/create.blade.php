@@ -21,40 +21,48 @@
                     <h5 class="card-title">Add Admin</h5>
                 </div>
                 <div class="card-body">
+
                     <form action="{{ route("dashboard.admins.store") }}" method="POST" enctype="multipart/form-data">
                         @csrf
-                        <div class="form-group {{ $errors->has('username') ? 'has-error' : '' }}">
+                        <div class="form-group">
                             <label for="name">{{ __('admin/user.name') }}*</label>
-                            <input type="text" id="name" name="name" class="form-control" value="{{ old('name', isset($admin) ? $admin->name : '') }}" required>
-                            @if($errors->has('username'))
-                                {{ $errors->first('username') }}
+                            <input type="text" id="name" name="name" class="form-control" value="{{ old('name', isset($admin) ? $admin->name : '') }}" >
+                            @if($errors->has('name'))
+                                <span class="text-danger">{{ $errors->first('name') }}</span>
                             @endif
 
                         </div>
                         <div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">
                             <label for="email">{{ __('admin/user.email') }}*</label>
-                            <input type="email" id="email" name="email" class="form-control" value="{{ old('email', isset($admin) ? $admin->email : '') }}" required>
+                            <input type="email" id="email" name="email" class="form-control" value="{{ old('email', isset($admin) ? $admin->email : '') }}" >
                             @if($errors->has('email'))
-                                {{ $errors->first('email') }}
+                                <span class="text-danger">{{ $errors->first('email') }}</span>
                             @endif
 
                         </div>
-                        <div class="form-group {{ $errors->has('password') ? 'has-error' : '' }}">
-                            <label for="password">{{ __('admin/user.password') }}</label>
-                            <input type="password" id="password" name="password" class="form-control" required>
-                            @if($errors->has('password'))
-                                {{ $errors->first('password') }}
-                            @endif
+                        <div class="row">
+                            <div class="form-group col-md-6 {{ $errors->has('password') ? 'has-error' : '' }}">
+                                <label for="password">{{ __('admin/user.password') }}</label>
+                                <input type="password" id="password" name="password" class="form-control" >
+                                @if($errors->has('password'))
+                                    <span class="text-danger">{{ $errors->first('password') }}</span>
+                                @endif
+                            </div>
+                            <div class="form-group col-md-6 {{ $errors->has('password') ? 'has-error' : '' }}">
+                                <label for="password">{{ __('admin/user.confirm_password') }}</label>
+                                <input type="password" id="password" name="password_confirmation" class="form-control" >
+                            </div>
                         </div>
                         <div class="form-group {{ $errors->has('roles') ? 'has-error' : '' }}">
-                            <label for="roles" class="col-md-6">{{ __('admin/user.roles') }}*
-                            <select name="roles[]" id="roles" class="select2 form-control"  required>
+                            <label for="roles" class="w-100 m-0">{{ __('admin/user.roles') }}*
+                            <select name="roles[]" id="roles" class="select2 form-control" >
                                 @foreach($roles as $id => $roles)
                                     <option value="{{ $id }}" {{ (in_array($id, old('roles', [])) || isset($user) && $user->roles->contains($id)) ? 'selected' : '' }}>{{ $roles }}</option>
                                 @endforeach
                             </select>
                             @if($errors->has('roles'))
-                                {{ $errors->first('roles') }}
+                                <span class="text-danger">{{ $errors->first('roles') }}</span>
+
                             @endif
                         </div>
                         <div>

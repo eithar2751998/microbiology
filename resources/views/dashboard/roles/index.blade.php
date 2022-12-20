@@ -22,6 +22,12 @@
         <div class="row">
             <!-- Start col -->
             <div class="col-lg-12">
+                @if(session('success'))
+                    <div class="alert alert-success">{{session('success')}}</div>
+                @endif
+                @if(session('error'))
+                    <div class="alert alert-danger">{{session('error')}}</div>
+                @endif
                 <div class="card m-b-30">
                     <div class="card-header">
                         <div class="row align-items-center">
@@ -48,7 +54,7 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class=" table table-borderless table-striped table-hover datatable datatable-Permission">
+                            <table class="table table-borderless table-hover datatable datatable-Permission">
                                 <thead>
                                 <tr>
                                     <th width="10">
@@ -110,5 +116,8 @@
     </div>
 @endsection
 @section('scripts')
-
+    <script>
+        setTimeout(function() {
+            $('#alert').fadeOut('fast');
+        }, 3000);
 @endsection

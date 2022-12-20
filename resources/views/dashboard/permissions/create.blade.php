@@ -26,9 +26,10 @@
                         @csrf
                         <div class="form-group {{ $errors->has('name') ? 'has-error' : '' }} col-md-8">
                             <label for="name">{{ __('admin/permission.title') }}</label>
-                            <input type="text" id="name" name="name" class="form-control" value="{{ old('name', isset($role) ? $role->name : '') }}" required>
+                            <input type="text" id="name" name="name" class="form-control" value="{{ old('name', isset($role) ? $role->name : '') }}" >
                             @if($errors->has('name'))
-                                {{ $errors->first('name') }}
+                                <span class="text-danger">{{ $errors->first('name') }}</span>
+
                             @endif
                         </div>
                         <div class="">

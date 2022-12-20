@@ -116,9 +116,11 @@ Route::group(['namespace' => 'Dashboard', 'middleware' => 'auth:admins'], functi
         Route::get('{question}/edit', [App\Http\Controllers\Dashboard\QuestionController::class, 'edit'])->name('dashboard.question.edit');
         Route::get('{question}/change_status', [App\Http\Controllers\Dashboard\QuestionController::class, 'changeStatus'])->name('dashboard.question.change_status');
         Route::get('{question}/show', [App\Http\Controllers\Dashboard\QuestionController::class, 'show'])->name('dashboard.question.show');
+        Route::get('{question}/restore', [App\Http\Controllers\Dashboard\QuestionController::class, 'restore'])->name('dashboard.question.restore');
         Route::post('store', [App\Http\Controllers\Dashboard\QuestionController::class, 'store'])->name('dashboard.question.store');
         Route::put('{question}/update', [App\Http\Controllers\Dashboard\QuestionController::class, 'update'])->name('dashboard.question.update');
         Route::delete('{question}/delete', [App\Http\Controllers\Dashboard\QuestionController::class, 'destroy'])->name('dashboard.question.delete');
+        Route::delete('{question}/forceDelete', [App\Http\Controllers\Dashboard\QuestionController::class, 'forceDelete'])->name('dashboard.question.forceDelete');
     });
 
 });

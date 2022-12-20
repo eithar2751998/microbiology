@@ -18,6 +18,12 @@
         <div class="row">
             <!-- Start col -->
             <div class="col-lg-12">
+                @if(session('success'))
+                    <div class="alert alert-success" id="alert">{{session('success')}}</div>
+                @endif
+                @if(session('error'))
+                    <div class="alert alert-danger" id="alert">{{session('error')}}</div>
+                @endif
                 <div class="card m-b-30">
                     <div class="card-header">
                         <div class="row align-items-center">
@@ -172,9 +178,9 @@
                                             @endforeach
                                         </td>
                                         <td>
-                                            <form action="{{ route('dashboard.admins.forceDelete', $admin->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
+                                            <form action="{{ route('dashboard.admins.forceDelete',$trashAdmin->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
                                                 <div class="button-list">
-                                                    <a href="{{ route('dashboard.admins.restore', $admin->id) }}" class="btn btn-secondary-rgba"><i class="icon feather icon-rotate-cw"></i></a>
+                                                    <a href="{{ route('dashboard.admins.restore', $trashAdmin->id) }}" class="btn btn-secondary-rgba"><i class="icon feather icon-rotate-cw"></i></a>
                                                     <input type="hidden" name="_method" value="DELETE">
                                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                                     <button type="submit" class="btn btn-danger-rgba" ><i class="feather icon-trash"></i></button>
@@ -197,4 +203,11 @@
         <!-- End row -->
     </div>
 
+@endsection
+@section('scripts')
+    <script>
+        setTimeout(function() {
+            $('#alert').fadeOut('fast');
+        }, 3000);
+    </script>
 @endsection

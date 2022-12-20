@@ -45,11 +45,20 @@ class PermissionController extends Controller
      * @param StorePermissionsRequest $request
      * @return RedirectResponse
      */
-    public function store(StorePermissionsRequest $request)
+    public function store(StorePermissionsRequest $request): RedirectResponse
     {
-        Permission::create($request->all());
+        if (Permission::create($request->all())){
 
-        return redirect()->route('dashboard.permissions.index');
+            return redirect()->route('dashboard.permissions.index')
+                ->with(['success'=> __('global.success_save')]);
+        }
+        else{
+            return redirect()->route('dashboard.permissions.index')
+                ->with(['error'=>__('global.error_save')]);
+        }
+
+
+
     }
 
     /**

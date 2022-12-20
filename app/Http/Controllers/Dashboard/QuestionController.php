@@ -25,7 +25,8 @@ class QuestionController extends Controller
     public function index(): View|Factory|Application
     {
         $questions = Question::all();
-        return view('dashboard.questions.index',compact('questions'));
+        $trashedQuestions = Question::onlyTrashed()->latest()->paginate(15);
+        return view('dashboard.questions.index',compact('questions','trashedQuestions'));
     }
 
     /**
@@ -207,12 +208,22 @@ class QuestionController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return Application|Factory|View
+     * @return RedirectResponse
      */
-    public function destroy($id): View|Factory|Application
+    public function destroy($id): RedirectResponse
     {
         $question = Question::find($id);
-            $question->forceDelete();
-        return view('dashboard.questions.index');
+        $question->delete();
+        return redirect()->route('dashboard.question.index');
+    }
+    public function forceDelete($id): RedirectResponse
+    {
+        Question::withTrashed()->find($id)->forceDelete();
+        return redirect()->route('dashboard.question.index');
+    }
+    public function restore($id): RedirectResponse
+    {
+        Question::withTrashed()->find($id)->restore();
+        return redirect()->route('dashboard.question.index');
     }
 }

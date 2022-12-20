@@ -6,7 +6,7 @@
                 <h4 class="page-title">Question List</h4>
                 <div class="breadcrumb-list">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{route('dashboard.question.index')}}">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{{route('dashboard.home')}}">Home</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Questions</li>
                     </ol>
                 </div>
@@ -109,6 +109,81 @@
         </div>
         <!-- End row -->
     </div>
+    <div class="contentbar">
+        <!-- Start row -->
+        <div class="row">
+            <!-- Start col -->
+            <div class="col-lg-12">
+                <div class="card m-b-30">
+                    <div class="card-header">
+                        <div class="row align-items-center">
+                            <div class="col-6">
+                                <h5 class="card-title mb-0">Trashed Questions</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-borderless">
+                                <thead>
+                                <tr>
+                                    <th width="10">
+
+                                    </th>
+                                    <th>
+                                        {{ __('admin/global.id') }}
+                                    </th>
+                                    <th>
+                                        {{ __('admin/global.title') }}
+                                    </th>
+                                    <th>
+                                        {{ __('admin/question.subjects') }}
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($trashedQuestions as $key => $trashQuestion)
+                                    <tr data-entry-id="{{ $trashQuestion->id }}">
+                                        <td>
+
+                                        </td>
+                                        <td>
+                                            {{ $trashQuestion->id ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ $trashQuestion->title ?? '' }}
+                                        </td>
+                                        <td>
+                                            @foreach($question->subjects()->get() as $subject)
+                                                <span class="badge badge-info">{{ $subject->name }}</span>
+                                            @endforeach
+                                        </td>
+
+                                        <td>
+                                            <form action="{{ route('dashboard.question.forceDelete', $trashQuestion->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
+                                                <div class="button-list">
+                                                    <a href="{{ route('dashboard.question.restore',  $trashQuestion->id) }}" class="btn btn-secondary-rgba"><i class="icon feather icon-rotate-cw"></i></a>
+                                                    <input type="hidden" name="_method" value="DELETE">
+                                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                                    <button type="submit" class="btn btn-danger-rgba" ><i class="feather icon-trash"></i></button>
+                                                </div>
+
+                                            </form>
+
+                                        </td>
+
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End col -->
+        </div>
+        <!-- End row -->
+    </div>
     <!-- Modal -->
     <div class="modal fade" id="questionShowModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -125,7 +200,7 @@
                     <p><strong>Image:</strong> <span id="image"></span></p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" id="close"  data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
@@ -149,15 +224,16 @@
                     $('#title').text(data[0].title);
 
                     for(var i=0; i < data[1].length; i++){
-                        $('#answers').append('<p id="text['+i+']">'+data[1][i].text+'</p>');
+                        $('#answers').append('<p id="text">'+data[1][i].text+'</p>');
                     }
                     for(var i=0; i < data[2].length; i++) {
                         $('#subjects').text (data[2][i].name);
                     }
-
                     $('#image').html(`<div class='text-center'><img style='width:200px; height:200px' src="{{asset('questions/${data[0].title}/${data[0].image}')}}"></div>`);
                 })
             });
+            function close(){
+            }
 
         });
 

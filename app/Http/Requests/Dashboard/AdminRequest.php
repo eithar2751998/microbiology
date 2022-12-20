@@ -4,7 +4,7 @@ namespace App\Http\Requests\Dashboard;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreRolesRequest extends FormRequest
+class AdminRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,15 +24,16 @@ class StoreRolesRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'          => 'required|unique:roles',
-            'permission'    => 'required'
+            'name'               => 'required',
+            'email'              => 'required|email|unique:admins',
+            'password'           => 'required|confirmed|regex:/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/',
+            'roles'              => 'required'
         ];
     }
     public function messages()
     {
         return [
-            'name.required'             => 'Name is required!',
-            'permission.required'       => 'Permission is required'
+            'password.regex' => 'more than 8 characters long, at-least 1 Uppercase, 1 Lowercase, 1 Numeric and 1 special character.'
         ];
     }
 }

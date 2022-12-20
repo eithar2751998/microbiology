@@ -6,5 +6,6 @@ return [
     'email'                 => 'Email',
     'roles'                 => 'Role',
     'password'              => 'Password',
+    'confirm_password'      => 'Confirm Password'
 
 ];

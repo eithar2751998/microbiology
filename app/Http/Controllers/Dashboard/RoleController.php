@@ -51,10 +51,19 @@ class RoleController extends Controller
     public function store(StoreRolesRequest $request)
     {
         $role = Role::create($request->except('permission'));
-        $permissions = $request->input('permission') ? $request->input('permission') : [];
-        $role->givePermissionTo($permissions);
+        if ($role == true){
+            $permissions = $request->input('permission') ? $request->input('permission') : [];
+            $role->givePermissionTo($permissions);
+            return redirect()->route('dashboard.roles.index')->with(['success'=> __('global.success_save')]);
+        }
+        else {
+                return redirect()->route('dashboard.roles.index')->with(['error'=> __('global.error_save')]);
+        }
 
-        return redirect()->route('dashboard.roles.index');
+
+
+
+
     }
 
     /**

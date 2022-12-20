@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Dashboard\AboutRequest;
 use App\Models\About;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -37,12 +38,11 @@ class AboutController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
+     * @param AboutRequest $request
      * @return RedirectResponse
      */
-    public function store(Request $request)
+    public function store(AboutRequest $request): RedirectResponse
     {
-//        dd($request);
         try {
             $about=new About();
             $about->header=$request->header;
@@ -92,9 +92,16 @@ class AboutController extends Controller
      */
     public function update(Request $request, About $about): RedirectResponse
     {
-        $about->update($request->all());
+        if ($about->update($request->all())) {
+            return redirect()->route('dashboard.about.index')
+                ->with(['success'=>__('global.success_update')]);
+        }
+        else{
+            return redirect()->route('dashboard.about.index')
+                ->with(['error'=>__('global.error_update')]);
+        }
 
-        return redirect()->route('dashboard.about.index');
+
     }
 
 
