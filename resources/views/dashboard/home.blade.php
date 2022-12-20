@@ -36,22 +36,22 @@
                                     </div>
                                 </div>
                             </div>
-{{--                            <div class="col-md-12 col-lg-4">--}}
-{{--                                <div class="card m-b-30">--}}
-{{--                                    <div class="card-header">--}}
-{{--                                        <h5 class="card-title mb-0">Roles</h5>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="card-body">--}}
-{{--                                        <div class="row">--}}
-{{--                                            <div class="col-md-12 text-center">--}}
-{{--                                                <p class="dash-analytic-icon"><i class="feather icon-users warning-rgba text-warning"></i></p>--}}
-{{--                                                <h3 class="mb-3">{{\Spatie\Permission\Models\Role::count()}}</h3>--}}
-{{--                                                <p class="mb-0"><span class="badge badge-success-inverse font-16">8%<i class="feather icon-arrow-up-right"></i></span></p>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
+                            <div class="col-md-12 col-lg-4">
+                                <div class="card m-b-30">
+                                    <div class="card-header">
+                                        <h5 class="card-title mb-0">Roles</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-12 text-center">
+                                                <p class="dash-analytic-icon"><i class="feather icon-users warning-rgba text-warning"></i></p>
+                                                <h3 class="mb-3">{{\Spatie\Permission\Models\Role::count()}}</h3>
+                                                <p class="mb-0"><span class="badge badge-success-inverse font-16">8%<i class="feather icon-arrow-up-right"></i></span></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="col-md-12 col-lg-4">
                                 <div class="card m-b-30">
                                     <div class="card-header">
