@@ -2,7 +2,7 @@
 return[
 
     'answers'                   => 'Answers',
-    'subjects'                  =>'Subjects',
+    'subjects'                  =>'Topics',
 
 
 ];

@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('subjects', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->tinyInteger('status')->default(1);
             $table->foreignId('department_id')->references('id')->on('departments')
                 ->onDelete('cascade');

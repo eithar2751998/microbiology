@@ -86,6 +86,7 @@ Route::group(['namespace' => 'Dashboard', 'middleware' => 'auth:admins'], functi
         Route::get('{subject}/edit', [App\Http\Controllers\Dashboard\SubjectController::class, 'edit'])->name('dashboard.subjects.edit');
         Route::get('{subject}/change_status', [App\Http\Controllers\Dashboard\SubjectController::class, 'changeStatus'])->name('dashboard.subjects.change_status');
         Route::get('{subject}/show', [App\Http\Controllers\Dashboard\SubjectController::class, 'show'])->name('dashboard.subjects.show');
+        Route::get('{subject}/questions', [App\Http\Controllers\Dashboard\SubjectController::class, 'subjectQuestions'])->name('dashboard.subjects.questions');
         Route::post('store', [App\Http\Controllers\Dashboard\SubjectController::class, 'store'])->name('dashboard.subjects.store');
         Route::put('{subject}/update', [App\Http\Controllers\Dashboard\SubjectController::class, 'update'])->name('dashboard.subjects.update');
         Route::delete('{subject}/delete', [App\Http\Controllers\Dashboard\SubjectController::class, 'destroy'])->name('dashboard.subjects.delete');

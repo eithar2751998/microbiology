@@ -18,5 +18,6 @@ return[
     'data_error'                => 'Error Data',
     'areYouSure'                => 'Are You Sure',
     'status'                    => 'Status',
-    'change_status'             => 'Do You Want To Change Status?!'
+    'change_status'             => 'Do You Want To Change Status?!',
+    'status_changed'            => 'Changed Status  Successfully'
 ];

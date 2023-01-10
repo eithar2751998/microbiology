@@ -7,7 +7,7 @@ return [
     'name'          => 'Name',
     'image'         => 'Image',
     'actions'       => 'Actions',
-    'department'    => 'Department',
+    'department'    => 'Course',
     'topics'        => 'Topics',
     'title'         => 'Title',
     'date'          => 'Date',

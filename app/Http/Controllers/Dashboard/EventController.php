@@ -170,7 +170,7 @@ class EventController extends Controller
 
             $event->update(['status'=>$status]);
 
-            return redirect()->route('dashboard.events.index')->with(['success'=>__('dashboard/admin.status_changed')]);
+            return redirect()->route('dashboard.events.index')->with(['success'=>__('global.status_changed')]);
 
         }
         catch (\Exception $e) {

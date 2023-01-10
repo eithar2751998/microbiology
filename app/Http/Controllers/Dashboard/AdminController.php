@@ -166,8 +166,8 @@ class AdminController extends Controller
 
             $admin->update(['status'=>$status]);
 
-//            notify()->success(__('dashboard/admin.status_changed'));
-            return redirect()->route('dashboard.admins.index')->with(['success'=>__('dashboard/admin.status_changed')]);
+//            notify()->success(__('global.status_changed'));
+            return redirect()->route('dashboard.admins.index')->with(['success'=>__('global.status_changed')]);
 
 
         } catch (\Exception $e) {

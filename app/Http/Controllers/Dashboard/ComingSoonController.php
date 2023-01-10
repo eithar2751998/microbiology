@@ -171,7 +171,7 @@ class ComingSoonController extends Controller
 
             $comingSoon->update(['status'=>$status]);
 
-            return redirect()->route('dashboard.coming.index')->with(['success'=>__('dashboard/admin.status_changed')]);
+            return redirect()->route('dashboard.coming.index')->with(['success'=>__('global.status_changed')]);
 
         }
         catch (\Exception $e) {

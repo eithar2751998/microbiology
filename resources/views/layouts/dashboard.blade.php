@@ -8,7 +8,7 @@
         <meta name="keywords" content="admin, admin dashboard, admin panel, admin template, analytics, bootstrap 4, crm, laravel admin, responsive, sass support, ui kits">
         <meta name="author" content="Themesbox17">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-        <title>Admin panel</title>
+        <title>Dashboard</title>
         <!-- Fevicon -->
         <link rel="shortcut icon" href="{{asset('assets/dashboard/images/smalllogo.png')}}">
         <!-- Start CSS -->

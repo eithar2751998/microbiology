@@ -178,7 +178,7 @@ class DepartmentController extends Controller
 
             $department->update(['status'=>$status]);
 
-            return redirect()->route('dashboard.dept.index')->with(['success'=>__('dashboard/admin.status_changed')]);
+            return redirect()->route('dashboard.dept.index')->with(['success'=>__('global.status_changed')]);
 
         }
         catch (\Exception $e) {

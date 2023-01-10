@@ -74,7 +74,22 @@
                                             {{ $department->id ?? '' }}
                                         </td>
                                         <td>
-                                            {{ $department->name ?? '' }}
+                                            <ul class="vertical-menu p-0">
+                                                <li>
+                                                    <a>
+                                                        <span>{{ $department->name ?? '' }}</span>
+                                                    </a>
+                                                    <ul class="vertical-submenu">
+                                                        <li>
+                                                            @foreach($department->subjects()->get() as $subject)
+                                                                <a href="{{route('dashboard.subjects.questions',$subject->id)}}"><i class="mdi mdi-circle"></i>{{$subject->name}}</a>
+                                                            @endforeach
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+
+
                                         </td>
                                         <td>
                                             @foreach($department->subjects()->get() as $subject)

@@ -27,6 +27,12 @@ class SubjectController extends Controller
         $subjects = Subject::all();
         return view('dashboard.subject.index',compact('subjects'));
     }
+    public function subjectQuestions($id): View|Factory|Application
+    {
+        $subject = Subject::find($id);
+        $questions = $subject->questions()->get();
+        return view('dashboard.subject.questions',compact('questions','subject'));
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -52,21 +58,23 @@ class SubjectController extends Controller
             $validate = Validator::make($request->all(), [
                 'name'          => 'required',
                 'department'    => 'required',
-                'image'     => 'mimes:jpeg,jpg,png|required'
+                'image'     => 'mimes:jpeg,jpg,png'
             ],[
                 'image.mimes'       =>'jpeg or jpg or png'
             ]);
             if ($validate->fails()){
                 return back()->withErrors($validate->errors())->withInput();
             }
+
+            $subject=new Subject();
+
+            $subject->name=$request->name;
             if ($request->hasfile('image')) {
                 $name = $request->image->getClientOriginalName();
                 $request->image->move(public_path() . '/subjects/' . $request->name . '/', $name);
                 $image = $name;
+                $subject->image=$image;
             }
-            $subject=new Subject();
-            $subject->name=$request->name;
-            $subject->image=$image;
             $department = Department::find($request->department);
 
 
@@ -186,7 +194,7 @@ class SubjectController extends Controller
             $status = $subject->status == 0 ? 1 : 0;
             $subject->update(['status' => $status]);
 
-            return redirect()->route('dashboard.subjects.index')->with(['success'=>__('dashboard/admin.status_changed')]);
+            return redirect()->route('dashboard.subjects.index')->with(['success'=>__('global.status_changed')]);
 
 
         } catch (\Exception $e) {
@@ -194,4 +202,5 @@ class SubjectController extends Controller
             return redirect()->route('dashboard.subjects.index')->with(['error'=>__('global.try_again')]);
         }
     }
+
 }

@@ -67,7 +67,8 @@
                                             {{ $subject->id ?? '' }}
                                         </td>
                                         <td>
-                                            {{ $subject->name ?? '' }}
+
+                                            <a href="{{ route('dashboard.subjects.questions', $subject->id) }}" class="text-secondary" >{{ $subject->name ?? '' }}</a>
                                         </td>
                                         <td>
                                                 <span class="badge badge-primary ">{{$subject->department->name}}</span>
