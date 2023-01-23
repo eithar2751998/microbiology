@@ -154,7 +154,7 @@
                                             {{ $trashQuestion->title ?? '' }}
                                         </td>
                                         <td>
-                                            @foreach($question->subjects()->get() as $subject)
+                                            @foreach($trashQuestion->subjects()->get() as $subject)
                                                 <span class="badge badge-info">{{ $subject->name }}</span>
                                             @endforeach
                                         </td>
