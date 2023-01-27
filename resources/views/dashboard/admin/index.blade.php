@@ -70,7 +70,7 @@
 
                                         </td>
                                         <td>
-                                            {{ $admin->id ?? '' }}
+                                            {{ $key }}
                                         </td>
                                         <td>
                                             {{ $admin->name ?? '' }}
