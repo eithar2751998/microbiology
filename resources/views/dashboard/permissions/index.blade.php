@@ -30,19 +30,6 @@
                             <div class="col-4">
                                 <a href="{{ route('dashboard.permissions.create')}}" class="btn btn-primary " > Add</a>
                             </div>
-{{--                            <div class="col-6">--}}
-{{--                                <ul class="list-inline-group text-right mb-0 pl-0">--}}
-{{--                                    <li class="list-inline-item">--}}
-{{--                                        <div class="form-group mb-0 amount-spent-select">--}}
-{{--                                            <select class="form-control" id="formControlSelect">--}}
-{{--                                                <option>All</option>--}}
-{{--                                                <option>Last Week</option>--}}
-{{--                                                <option>Last Month</option>--}}
-{{--                                            </select>--}}
-{{--                                        </div>--}}
-{{--                                    </li>--}}
-{{--                                </ul>--}}
-{{--                            </div>--}}
                         </div>
                     </div>
                     <div class="card-body">
@@ -71,7 +58,7 @@
 
                                         </td>
                                         <td>
-                                            {{ $permission->id ?? '' }}
+                                            {{ $key +1 }}
                                         </td>
                                         <td>
                                             {{ $permission->name ?? '' }}

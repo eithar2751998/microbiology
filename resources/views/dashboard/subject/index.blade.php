@@ -64,7 +64,7 @@
 
                                         </td>
                                         <td>
-                                            {{ $subject->id ?? '' }}
+                                            {{ $key +1 }}
                                         </td>
                                         <td>
 

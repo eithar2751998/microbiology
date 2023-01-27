@@ -71,7 +71,7 @@
 
                                         </td>
                                         <td>
-                                            {{ $department->id ?? '' }}
+                                            {{ $key +1 }}
                                         </td>
                                         <td>
                                             <ul class="vertical-menu p-0">

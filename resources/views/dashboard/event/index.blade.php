@@ -67,7 +67,7 @@
 
                                         </td>
                                         <td>
-                                            {{ $event->id ?? '' }}
+                                            {{ $key +1}}
                                         </td>
                                         <td>
                                             {{ $event->title ?? '' }}

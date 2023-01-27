@@ -69,7 +69,7 @@
 
                                         </td>
                                         <td>
-                                            {{ $coming->id ?? '' }}
+                                            {{ $key +1 }}
                                         </td>
                                         <td>
                                             {{ $coming->title ?? '' }}

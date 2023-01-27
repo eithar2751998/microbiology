@@ -58,47 +58,41 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($questions as $key => $question)
-                                    <tr data-entry-id="{{ $question->id }}">
-                                        <td>
-
-                                        </td>
-                                        <td>
-                                            {{ $question->id ?? '' }}
-                                        </td>
-                                        <td>
-                                            {{ $question->title ?? '' }}
-                                        </td>
-                                        <td>
-                                            @foreach($question->answers()->get() as $answer)
-                                                {{ $answer->text }}<br>
-                                            @endforeach
-                                        </td>
-                                        <td>
-                                            @foreach($question->subjects()->get() as $subject)
-                                                <span class="badge badge-info">{{ $subject->name }}</span>
-                                            @endforeach
-                                        </td>
-
-
-                                        <td>
-                                            <form action="{{ route('dashboard.question.delete', $question->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
-                                                <div class="button-list">
-                                                    <a href="{{ route('dashboard.question.edit', $question->id) }}" class="btn btn-warning-rgba"><i class="feather icon-edit-2"></i></a>
-                                                    <a href="javascript:void(0)" id="show-question" data-url="{{ route('dashboard.question.show', $question->id)}}" class="btn btn-primary model-animation-btn" data-animation="zoomIn">
-                                                        <i class="feather icon-eye"></i>
-                                                    </a>
-                                                    <input type="hidden" name="_method" value="DELETE">
-                                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                                    <button type="submit" class="btn btn-danger-rgba" ><i class="feather icon-trash"></i></button>
-                                                </div>
-
-                                            </form>
-
-                                        </td>
-
-                                    </tr>
-                                @endforeach
+                                    @foreach($questions as $key => $question)
+                                        <tr data-entry-id="{{ $question->id }}">
+                                            <td>
+                                            </td>
+                                            <td>
+                                                {{$key+1}}
+                                            </td>
+                                            <td>
+                                                {{ $question->title ?? '' }}
+                                            </td>
+                                            <td>
+                                                @foreach($question->answers()->get() as $answer)
+                                                    {{ $answer->text }}<br>
+                                                @endforeach
+                                            </td>
+                                            <td>
+                                                @foreach($question->subjects()->get() as $subject)
+                                                    <span class="badge badge-info">{{ $subject->name }}</span>
+                                                @endforeach
+                                            </td>
+                                            <td>
+                                                <form action="{{ route('dashboard.question.delete', $question->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
+                                                    <div class="button-list">
+                                                        <a href="{{ route('dashboard.question.edit', $question->id) }}" class="btn btn-warning-rgba"><i class="feather icon-edit-2"></i></a>
+                                                        <a href="javascript:void(0)" id="show-question" data-url="{{ route('dashboard.question.show', $question->id)}}" class="btn btn-primary model-animation-btn" data-animation="zoomIn">
+                                                            <i class="feather icon-eye"></i>
+                                                        </a>
+                                                        <input type="hidden" name="_method" value="DELETE">
+                                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                                        <button type="submit" class="btn btn-danger-rgba" ><i class="feather icon-trash"></i></button>
+                                                    </div>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -148,7 +142,7 @@
 
                                         </td>
                                         <td>
-                                            {{ $trashQuestion->id ?? '' }}
+                                            {{ $key +1 }}
                                         </td>
                                         <td>
                                             {{ $trashQuestion->title ?? '' }}
