@@ -3,7 +3,7 @@
     <link href="{{asset('assets/dashboard/plugins/select2/select2.min.css')}}" rel="stylesheet" type="text/css">
     <link href="{{asset('assets/dashboard/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css')}}" rel="stylesheet" type="text/css">
     <link href="{{asset('assets/dashboard/plugins/bootstrap-tagsinput/bootstrap-tagsinput-typeahead.css')}}" rel="stylesheet" type="text/css">
-
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
 @endsection
 @section('content')
     <div class="breadcrumbbar">
@@ -29,13 +29,12 @@
                 <div class="card-body">
                     <form action="{{ route("dashboard.question.store") }}" method="POST" enctype="multipart/form-data">
                         @csrf
-                        <div class="form-group">
-                            <label for="title">{{ __('admin/global.title') }}*</label>
-                            <input type="text" id="title" name="title" class="form-control" value="" >
+                        <div class="form-group mt-3">
+                            <label for="summernote">{{ __('admin/global.title') }} *</label>
+                            <textarea id="summernote" name="title" >{{{old('title')}}}</textarea>
                             @if($errors->has('title'))
                                 <span class="text-danger">{{ $errors->first('title') }}</span>
                             @endif
-
                         </div>
                         <div class="form-group">
                             <label for="subjects">{{ __('admin/question.subjects') }}*</label>
@@ -68,6 +67,9 @@
                             @if($errors->has('text'))
                                 <span class="text-danger">{{ $errors->first('text') }}</span>
                             @endif
+                            @if($errors->has('correct'))
+                                <span class="text-danger">{{ $errors->first('correct') }}</span>
+                            @endif
                         </div>
 
                         <div class="row">
@@ -94,15 +96,13 @@
 
 
     <script src="{{asset('assets/dashboard/plugins/select2/select2.min.js')}}"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
     <script type="text/javascript">
         var i = 0;
         $("#dynamic-ar").click(function () {
             ++i;
-            $("#dynamicAddRemove").append('<tr><td><input type="text" name="text[]" ' +
-                'placeholder="Enter Answer" class="form-control" /></td><td><button type="button" class="btn btn-outline-danger remove-input-field">Delete</button></td>' +
+            $("#dynamicAddRemove").append('<tr><td><input type="text" id="answer" name="text[]" placeholder="Enter Answer" class="form-control" />' +
+                '</td><td><button type="button" class="btn btn-outline-danger remove-input-field">Delete</button></td>' +
                 '<td class="custom-control custom-radio"> ' +
                 '<input type="radio" id="correct['+i+']" name="correct" value="'+i+'" class="custom-control-input"> ' +
                 '<label class="custom-control-label" for="correct['+i+']" >Correct</label> </td></tr>'
@@ -111,6 +111,13 @@
         $(document).on('click', '.remove-input-field', function () {
             $(this).parents('tr').remove();
         });
+
+
+        $('#summernote').summernote({
+            height: 40
+        });
+
+
     </script>
 
 

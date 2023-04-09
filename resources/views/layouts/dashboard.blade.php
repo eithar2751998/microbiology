@@ -12,6 +12,7 @@
         <!-- Fevicon -->
         <link rel="shortcut icon" href="{{asset('assets/dashboard/images/smalllogo.png')}}">
         <!-- Start CSS -->
+        <link href="{{asset('assets/dashboard/plugins/switchery/switchery.min.css')}}" rel="stylesheet">
         @yield('styles')
         <!-- Datepicker css -->
         <link href="{{asset('assets/dashboard/plugins/datepicker/datepicker.min.css')}}" rel="stylesheet" type="text/css">
@@ -19,7 +20,7 @@
         <link href="{{asset('assets/dashboard/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
         <link href="{{asset('assets/dashboard/css/icons.css')}}" rel="stylesheet" type="text/css">
         <link href="{{asset('assets/dashboard/css/flag-icon.min.css')}}" rel="stylesheet" type="text/css">
-        <link href="{{asset('assets/dashboard/plugins/switchery/switchery.min.css')}}" rel="stylesheet">
+
 
         <!-- Code Mirror css -->
         <link href="{{asset('assets/dashboard/plugins/code-mirror/codemirror.css')}}" rel="stylesheet">
@@ -37,7 +38,7 @@
             </div>
         </div>
         @include('dashboard.includes.footer')
-        <script src="{{asset('assets/dashboard/js/jquery.min.js')}}"></script>
+        <script src="{{asset('assets/dashboard/js/jquery-3.5.1.min.js')}}" crossorigin="anonymous"></script>
         <script src="{{asset('assets/dashboard/js/popper.min.js')}}"></script>
         <script src="{{asset('assets/dashboard/js/bootstrap.min.js')}}"></script>
         <script src="{{asset('assets/dashboard/js/modernizr.min.js')}}"></script>
@@ -46,18 +47,8 @@
         <script src="{{asset('assets/dashboard/js/vertical-menu.js')}}"></script>
 
         <script src="{{asset('assets/dashboard/plugins/switchery/switchery.min.js')}}"></script>
-        @yield('scripts')
-        <!-- Morris Chart js -->
-        <script src="{{asset('assets/dashboard/plugins/morris/morris.min.js')}}"></script>
-        <script src="{{asset('assets/dashboard/plugins/code-mirror/codemirror.js')}}"></script>
-        <script src="{{asset('assets/dashboard/plugins/code-mirror/htmlmixed.js')}}"></script>
-        <script src="{{asset('assets/dashboard/plugins/code-mirror/css.js')}}"></script>
-        <script src="{{asset('assets/dashboard/plugins/code-mirror/javascript.js')}}"></script>
-        <script src="{{asset('assets/dashboard/plugins/code-mirror/xml.js')}}"></script>
-        <!-- Dashboard js -->
-        <script src="{{asset('assets/dashboard/js/custom/custom-dashboard-analytics.js')}}"></script>
-
         <script src="{{asset('assets/dashboard/js/bootstrap.bundle.min.js')}}" ></script>
+        @yield('scripts')
         <!-- Core js -->
         <script src="{{asset('assets/dashboard/js/core.js')}}"></script>
 

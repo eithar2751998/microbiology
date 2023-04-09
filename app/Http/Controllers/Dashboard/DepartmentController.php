@@ -26,8 +26,6 @@ class DepartmentController extends Controller
     public function index(): View|Factory|Application
     {
         $departments = Department::all();
-//        $subjects = Department::find(6)->subjects()->get();
-//        dd($subjects);
         return view('dashboard.departments.index', compact('departments'));
     }
 

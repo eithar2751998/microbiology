@@ -558,8 +558,8 @@ blockquote p {
 }
 .readon.orange-btn {
   color: #ffffff;
-  background: #ff5421;
-  border-color: #ff5421;
+  background: #15A9C9;
+  border-color: #15A9C9;
   border-radius: 5px 5px 5px 5px;
   outline: none;
   padding: 12px 35px;
@@ -578,8 +578,8 @@ blockquote p {
 }
 .readon.orange-btn:hover {
   color: #ffffff;
-  background: #ed3600;
-  border-color: #ed3600;
+  background: #15A9C9;
+  border-color: #15A9C9;
 }
 .readon.orange-btn.transparent:hover {
   color: #101010;
@@ -4790,7 +4790,7 @@ body .modal-backdrop {
   font-size: 22px;
   line-height: 30px;
   font-weight: 500;
-  color: #ff5421;
+  color: #15A9C9;
   margin-bottom: 22px;
   text-transform: uppercase;
 }
@@ -4823,7 +4823,7 @@ body .modal-backdrop {
   height: 42px;
   line-height: 42px;
   border-radius: 50%;
-  background: #ff5421;
+  background: #15A9C9;
   text-align: center;
   color: #ffffff;
   transition: all 0.5s;
@@ -4838,7 +4838,7 @@ body .modal-backdrop {
 }
 .rs-slider.main-home .owl-nav .owl-next:hover,
 .rs-slider.main-home .owl-nav .owl-prev:hover {
-  background: #ed3600;
+  background: #15A9C9;
 }
 .rs-slider.main-home .owl-nav .owl-next {
   right: 30px;
@@ -14099,7 +14099,7 @@ body .modal-backdrop {
   background-size: cover;
 }
 .rs-footer .footer-top {
-  padding: 218px 0 93px;
+  padding: 60px 0 50px;
 }
 .rs-footer .footer-top .widget-title {
   color: #ffffff;

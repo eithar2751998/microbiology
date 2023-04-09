@@ -66,11 +66,16 @@
                                                 {{$key+1}}
                                             </td>
                                             <td>
-                                                {{ $question->title ?? '' }}
+                                                {!! $question->title ?? '' !!}
                                             </td>
                                             <td>
                                                 @foreach($question->answers()->get() as $answer)
-                                                    {{ $answer->text }}<br>
+                                                    @if ($answer->correct == 1)
+                                                        <span class="badge badge-success " style="display: initial"> {{ $answer->text }} <br> </span>
+                                                    @else
+                                                        {{ $answer->text }}<br>
+                                                    @endif
+
                                                 @endforeach
                                             </td>
                                             <td>
@@ -145,7 +150,7 @@
                                             {{ $key +1 }}
                                         </td>
                                         <td>
-                                            {{ $trashQuestion->title ?? '' }}
+                                            {!! $trashQuestion->title ?? ''  !!}
                                         </td>
                                         <td>
                                             @foreach($trashQuestion->subjects()->get() as $subject)

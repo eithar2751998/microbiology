@@ -27,7 +27,8 @@ class QuestionRequest extends FormRequest
             'title'         => 'required|min:5',
             'image'         => 'mimes:jpeg,jpg,png',
             'text'          => 'required',
-            'subjects'      => 'required'
+            'subjects'      => 'required',
+            'correct'       => 'required'
         ];
     }
     public function messages()

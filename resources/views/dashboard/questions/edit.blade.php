@@ -3,6 +3,7 @@
     <link href="{{asset('assets/dashboard/plugins/select2/select2.min.css')}}" rel="stylesheet" type="text/css">
     <link href="{{asset('assets/dashboard/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css')}}" rel="stylesheet" type="text/css">
     <link href="{{asset('assets/dashboard/plugins/bootstrap-tagsinput/bootstrap-tagsinput-typeahead.css')}}" rel="stylesheet" type="text/css">
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
 
 @endsection
 @section('content')
@@ -31,8 +32,8 @@
                         @csrf
                         @method('PUT')
                         <div class="form-group">
-                            <label for="title">{{ __('admin/global.title') }}*</label>
-                            <input type="text" id="title" name="title" class="form-control" value="{{$question->title}}" >
+                            <label for="summernote">{{ __('admin/global.title') }}*</label>
+                            <textarea id="summernote" name="title" >{{$question->title}}</textarea>
                             @if($errors->has('title'))
                                 <span class="text-danger">{{ $errors->first('title') }}</span>
                             @endif
@@ -44,8 +45,8 @@
                                     <option value="{{$subject->id}}">{{$subject->name}}</option>
                                 @endforeach
                             </select>
-                            @if($errors->has('title'))
-                                <span class="text-danger"> {{ $errors->first('title') }} </span>
+                            @if($errors->has('subjects'))
+                                <span class="text-danger"> {{ $errors->first('subjects') }} </span>
                             @endif
 
                         </div>
@@ -77,6 +78,9 @@
                                     </tr>
                                 @endforeach
                             </table>
+                            @if($errors->has('text'))
+                                <span class="text-danger">{{ $errors->first('text') }}</span>
+                            @endif
                         </div>
 
                         <div class="row">
@@ -103,8 +107,7 @@
 
 
     <script src="{{asset('assets/dashboard/plugins/select2/select2.min.js')}}"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
 
     <script type="text/javascript">
         var i = document.getElementById("countOfAnswers").value;
@@ -129,6 +132,10 @@
                 image.src = URL.createObjectURL(file)
             }
         }
+
+        $('#summernote').summernote({
+            height: 40
+        });
     </script>
 
 @endsection
