@@ -251,9 +251,9 @@ code {
   transition: 0.5s;
 }
 
-::-webkit-scrollbar {
-  /*width: 0;*/
-}
+/*::-webkit-scrollbar {*/
+/*  !*width: 0;*!*/
+/*}*/
 
 ::-webkit-scrollbar-track {
   background: transparent;
