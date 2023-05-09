@@ -37,7 +37,7 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-borderless">
+                            <table class="table table-borderless" style="height:20px;overflow-y:scroll">
                                 <thead>
                                 <tr>
                                     <th width="10">
@@ -65,8 +65,8 @@
                                             <td>
                                                 {{$key+1}}
                                             </td>
-                                            <td>
-                                                {!! $question->title ?? '' !!}
+                                            <td style="width: 340px !important;">
+                                                {!! $question->title ?? ''  !!}
                                             </td>
                                             <td>
                                                 @foreach($question->answers()->get() as $answer)
