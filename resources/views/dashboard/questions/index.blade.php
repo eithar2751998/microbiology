@@ -66,10 +66,10 @@
                                         <td>
                                             {{ $question->id ?? '' }}
                                         </td>
-                                        <td style="width: 340px;text-align: justify;">
+                                        <td style="max-width: 25%;text-align: justify;">
                                             {!! $question->title ?? '' !!}
                                         </td>
-                                        <td style="padding-left: 1.5%" >
+                                        <td style="padding-left: 1.5%; max-width: 25%" >
                                             @foreach($question->answers()->get() as $answer)
                                                 @if ($answer->correct == 1)
                                                     <span class="badge badge-success">{{ $answer->text }}</span>
@@ -79,7 +79,7 @@
                                                 @endif
                                             @endforeach
                                         </td>
-                                        <td>
+                                        <td style=" max-width: 25%">
                                             @foreach($question->subjects()->get() as $subject)
                                                 <span class="badge badge-info">{{ $subject->name }}</span>
                                             @endforeach
