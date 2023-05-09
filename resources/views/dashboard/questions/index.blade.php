@@ -49,7 +49,7 @@
                                     <th>
                                         {{ __('admin/global.title') }}
                                     </th>
-                                    <th style="padding-left: 1.5%">
+                                    <th>
                                         {{ __('admin/question.answers') }}
                                     </th>
                                     <th>
@@ -66,10 +66,10 @@
                                         <td>
                                             {{ $question->id ?? '' }}
                                         </td>
-                                        <td style="width: 25%;text-align: justify;">
+                                        <td>
                                             {!! $question->title ?? '' !!}
                                         </td>
-                                        <td style="padding-left: 1.5%;width: 25%" >
+                                        <td>
                                             @foreach($question->answers()->get() as $answer)
                                                 @if ($answer->correct == 1)
                                                     <span class="badge badge-success">{{ $answer->text }}</span>
@@ -79,7 +79,7 @@
                                                 @endif
                                             @endforeach
                                         </td>
-                                        <td style="width: 25%">
+                                        <td>
                                             @foreach($question->subjects()->get() as $subject)
                                                 <span class="badge badge-info">{{ $subject->name }}</span>
                                             @endforeach
