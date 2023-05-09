@@ -82,6 +82,7 @@
                                         <td>
                                             @foreach($question->subjects()->get() as $subject)
                                                 <span class="badge badge-info">{{ $subject->name }}</span>
+                                                <br>
                                             @endforeach
                                         </td>
                                         <td>
