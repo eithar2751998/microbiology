@@ -113,22 +113,20 @@
         });
 
 
-        // $('#summernote').summernote({
-        //     toolbar: [
-        //         // [groupName, [list of button]]
-        //         ['style', ['bold', 'italic', 'underline', 'clear']],
-        //         ['font', ['strikethrough', 'superscript', 'subscript']],
-        //         ['fontsize', ['fontsize']],
-        //         ['color', ['color']],
-        //         ['para', ['ul', 'ol', 'paragraph']],
-        //         ['height', ['height']],
-        //         ['insert', ['picture']],
-        //     ],
-        //     height: 60,
-        //     width: 500
-        // });
-        $('#summernote').summernote('code', 'html_tags_string_from_db');
-
+        $('#summernote').summernote({
+            toolbar: [
+                // [groupName, [list of button]]
+                ['style', ['bold', 'italic', 'underline', 'clear']],
+                // ['font', ['strikethrough', 'superscript', 'subscript']],
+                ['fontsize', ['fontsize']],
+                ['color', ['color']],
+                // ['para', ['ul', 'ol', 'paragraph']],
+                // ['height', ['height']],
+                // ['insert', ['picture']],
+            ],
+            height: 60,
+            width: 500
+        });
 
     </script>
 

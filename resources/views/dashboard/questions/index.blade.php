@@ -49,7 +49,7 @@
                                     <th>
                                         {{ __('admin/global.title') }}
                                     </th>
-                                    <th>
+                                    <th style="padding-left: 1.5%">
                                         {{ __('admin/question.answers') }}
                                     </th>
                                     <th>
@@ -66,12 +66,17 @@
                                         <td>
                                             {{ $question->id ?? '' }}
                                         </td>
-                                        <td>
+                                        <td style="width: 340px;text-align: justify;">
                                             {!! $question->title ?? '' !!}
                                         </td>
-                                        <td>
+                                        <td style="padding-left: 1.5%" >
                                             @foreach($question->answers()->get() as $answer)
-                                                {{ $answer->text }}<br>
+                                                @if ($answer->correct == 1)
+                                                    <span class="badge badge-success">{{ $answer->text }}</span>
+                                                    <br>
+                                                @else
+                                                    {{ $answer->text }} <br>
+                                                @endif
                                             @endforeach
                                         </td>
                                         <td>

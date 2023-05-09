@@ -68,11 +68,16 @@
                                             {{ $question->id ?? '' }}
                                         </td>
                                         <td>
-                                            {!! $question->title ?? '' !!}  
+                                            {!! $question->title ?? '' !!}
                                         </td>
                                         <td>
                                             @foreach($question->answers()->get() as $answer)
-                                                {{ $answer->text }}<br>
+                                                @if ($answer->correct == 1)
+                                                    <span class="badge badge-success">{{ $answer->text }}</span>
+                                                    <br>
+                                                @else
+                                                    {{ $answer->text }} <br>
+                                                @endif
                                             @endforeach
                                         </td>
                                         <td>
