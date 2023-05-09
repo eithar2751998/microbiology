@@ -68,7 +68,7 @@
                                             {{ $question->id ?? '' }}
                                         </td>
                                         <td>
-                                            {{ $question->title ?? '' }}
+                                            {!! $question->title ?? '' !!}  
                                         </td>
                                         <td>
                                             @foreach($question->answers()->get() as $answer)
