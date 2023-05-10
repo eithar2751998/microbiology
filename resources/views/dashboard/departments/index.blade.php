@@ -74,26 +74,11 @@
                                             {{ $key +1 }}
                                         </td>
                                         <td>
-                                            <ul class="vertical-menu p-0">
-                                                <li>
-                                                    <a>
-                                                        <span>{{ $department->name ?? '' }}</span>
-                                                    </a>
-                                                    <ul class="vertical-submenu">
-                                                        <li>
-                                                            @foreach($department->subjects()->get() as $subject)
-                                                                <a href="{{route('dashboard.subjects.questions',$subject->id)}}"><i class="mdi mdi-circle"></i>{{$subject->name}}</a>
-                                                            @endforeach
-                                                        </li>
-                                                    </ul>
-                                                </li>
-                                            </ul>
-
-
+                                            <span>{{ $department->name ?? '' }}</span>
                                         </td>
                                         <td>
                                             @foreach($department->subjects()->get() as $subject)
-                                               <span class="badge badge-primary"> {{ $subject->name ?? '' }} </span>
+                                               <span class="badge badge-primary"><a href="{{route('dashboard.subjects.questions',$subject->id)}}" class="text-white text-capitalize">{{$subject->name}}</a> </span>
                                             @endforeach
                                         </td>
                                         <td>

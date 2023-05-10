@@ -66,7 +66,7 @@
                                         <td>
                                             {{ $question->id ?? '' }}
                                         </td>
-                                        <td>
+                                        <td style="width: 340px;">
                                             {!! $question->title ?? '' !!}
                                         </td>
                                         <td>
