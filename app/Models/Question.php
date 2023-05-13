@@ -18,6 +18,7 @@ class Question extends Model
         'title',
         'image'
     ];
+
     public function subjects()
     {
         return $this->belongsToMany(Subject::class,'question_subjects');

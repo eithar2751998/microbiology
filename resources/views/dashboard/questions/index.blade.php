@@ -59,6 +59,7 @@
                                 </thead>
                                 <tbody>
                                 @foreach($questions as $key => $question)
+
                                     <tr data-entry-id="{{ $question->id }}">
                                         <td>
 
@@ -72,10 +73,11 @@
                                         <td>
                                             @foreach($question->answers()->get() as $answer)
                                                 @if ($answer->correct == 1)
-                                                    <span class="badge badge-success">{{ $answer->text }}</span>
+                                                    <span class="badge badge-success" style="white-space: normal; width: 250px">{{ $answer->text }}</span>
                                                     <br>
                                                 @else
-                                                    {{ $answer->text }} <br>
+                                                   <span CLASS="badge" style="white-space: normal; width: 250px"> {{ $answer->text }} </span>
+                                                    <br>
                                                 @endif
                                             @endforeach
                                         </td>
@@ -103,8 +105,11 @@
 
                                     </tr>
                                 @endforeach
+
                                 </tbody>
+
                             </table>
+                            {{ $questions->links() }}
                         </div>
                     </div>
                 </div>

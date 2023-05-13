@@ -14,6 +14,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use PhpParser\Node\Expr\New_;
 use PHPUnit\Exception;
@@ -27,7 +28,7 @@ class QuestionController extends Controller
      */
     public function index(): View|Factory|Application
     {
-        $questions = Question::all();
+        $questions = Question::paginate(6);
         $trashedQuestions = Question::onlyTrashed()->latest()->paginate(15);
         return view('dashboard.questions.index',compact('questions','trashedQuestions'));
     }
