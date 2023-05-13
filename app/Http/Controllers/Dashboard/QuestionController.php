@@ -28,7 +28,7 @@ class QuestionController extends Controller
      */
     public function index(): View|Factory|Application
     {
-        $questions = Question::paginate(6);
+        $questions = Question::paginate(15);
         $trashedQuestions = Question::onlyTrashed()->latest()->paginate(15);
         return view('dashboard.questions.index',compact('questions','trashedQuestions'));
     }

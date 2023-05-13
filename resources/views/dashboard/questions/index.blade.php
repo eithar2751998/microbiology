@@ -67,8 +67,9 @@
                                         <td>
                                             {{ $question->id ?? '' }}
                                         </td>
-                                        <td style="width: 340px!important;;" class="text-justify">
-                                            {!! $question->title ?? '' !!}
+                                        <td class="text-justify overflow-hidden d-inline-block text-nowrap" style="width: 500px;">
+                                            <span  style="white-space: normal; width: 250px">{!! $question->title ?? '' !!} </span>
+{{--                                            {!! $question->title ?? '' !!}--}}
                                         </td>
                                         <td>
                                             @foreach($question->answers()->get() as $answer)
