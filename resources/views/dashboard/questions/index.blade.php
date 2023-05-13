@@ -67,7 +67,7 @@
                                         <td>
                                             {{ $question->id ?? '' }}
                                         </td>
-                                        <td class="text-justify overflow-hidden d-inline-block text-nowrap" style="width: 450px;">
+                                        <td class="text-justify overflow-hidden text-nowrap" style="width: 450px;">
                                             <span  style="white-space: normal">{!! $question->title ?? '' !!} </span>
                                         </td>
                                         <td>
