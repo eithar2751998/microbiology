@@ -67,9 +67,8 @@
                                         <td>
                                             {{ $question->id ?? '' }}
                                         </td>
-                                        <td class="text-justify overflow-hidden d-inline-block text-nowrap" style="width: 500px;">
-                                            <span  style="white-space: normal; width: 250px">{!! $question->title ?? '' !!} </span>
-{{--                                            {!! $question->title ?? '' !!}--}}
+                                        <td class="text-justify overflow-hidden d-inline-block text-nowrap" style="width: 450px;">
+                                            <span  style="white-space: normal">{!! $question->title ?? '' !!} </span>
                                         </td>
                                         <td>
                                             @foreach($question->answers()->get() as $answer)
@@ -77,7 +76,7 @@
                                                     <span class="badge badge-success" style="white-space: normal; width: 250px">{{ $answer->text }}</span>
                                                     <br>
                                                 @else
-                                                   <span CLASS="badge" style="white-space: normal; width: 250px"> {{ $answer->text }} </span>
+                                                   <span class="badge" style="white-space: normal; width: 250px"> {{ $answer->text }} </span>
                                                     <br>
                                                 @endif
                                             @endforeach

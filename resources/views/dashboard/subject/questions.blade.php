@@ -53,9 +53,9 @@
                                     <th>
                                         {{ __('admin/question.answers') }}
                                     </th>
-                                    <th>
-                                        {{ __('admin/question.subjects') }}
-                                    </th>
+{{--                                    <th>--}}
+{{--                                        {{ __('admin/question.subjects') }}--}}
+{{--                                    </th>--}}
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -67,22 +67,22 @@
                                         <td>
                                             {{ $question->id ?? '' }}
                                         </td>
-                                        <td>
-                                            {!! $question->title ?? '' !!}
+                                        <td class="text-justify overflow-hidden d-inline-block text-nowrap" style="width: 450px;">
+                                            <span  style="white-space: normal">{!! $question->title ?? '' !!} </span>
                                         </td>
                                         <td>
                                             @foreach($question->answers()->get() as $answer)
                                                 @if ($answer->correct == 1)
-                                                    <span class="badge badge-success">{{ $answer->text }}</span>
+                                                    <span class="badge badge-success" style="white-space: normal; width: 250px">{{ $answer->text }}</span>
                                                     <br>
                                                 @else
-                                                    {{ $answer->text }} <br>
+                                                    <span class="badge" style="white-space: normal; width: 250px"> {{ $answer->text }} </span>
                                                 @endif
                                             @endforeach
                                         </td>
-                                        <td>
-                                            <span class="badge badge-info">{{ $subject->name }}</span>
-                                        </td>
+{{--                                        <td>--}}
+{{--                                            <span class="badge badge-info"  style="white-space: normal; width: 300px">{{ $subject->name }}</span>--}}
+{{--                                        </td>--}}
                                         <td>
                                             <form action="{{ route('dashboard.question.delete', $question->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
                                                 <div class="button-list">
