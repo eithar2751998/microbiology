@@ -67,7 +67,7 @@
                                         <td>
                                             {{ $question->id ?? '' }}
                                         </td>
-                                        <td style="" class="text-justify">
+                                        <td style="width: 340px!important;;" class="text-justify">
                                             {!! $question->title ?? '' !!}
                                         </td>
                                         <td>
