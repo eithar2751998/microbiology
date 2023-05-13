@@ -66,7 +66,7 @@
                                         <td>
                                             {{ $question->id ?? '' }}
                                         </td>
-                                        <td style="width: 450px;" class="text-justify">
+                                        <td style="" class="text-justify">
                                             {!! $question->title ?? '' !!}
                                         </td>
                                         <td>
@@ -81,7 +81,7 @@
                                         </td>
                                         <td>
                                             @foreach($question->subjects()->get() as $subject)
-                                                <span class="badge badge-info">{{ $subject->name }}</span>
+                                                <span class="badge badge-info" style="white-space: normal; width: 300px">{{ $subject->name }}</span>
                                                 <br>
                                             @endforeach
                                         </td>
