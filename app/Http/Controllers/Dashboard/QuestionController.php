@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\QuestionRequest;
 use App\Models\Answer;
+use App\Models\FreeQuestion;
 use App\Models\Question;
 use App\Models\Subject;
 use Illuminate\Contracts\Foundation\Application;
@@ -43,6 +44,7 @@ class QuestionController extends Controller
         $subjects = Subject::where('status',1)->get();
         return view('dashboard.questions.create',compact('subjects'));
     }
+
 
     /**
      * Store a newly created resource in storage.
@@ -260,5 +262,27 @@ class QuestionController extends Controller
         else
             return redirect()->route('dashboard.question.index')
                 ->with(['error' => __('global.error_restore')]);
+    }
+    public function AddToFree(Question $question): RedirectResponse
+    {
+        try {
+
+            $free = $question->free = 1;
+
+            $question->update(['free'=>$free]);
+
+            return redirect()->route('dashboard.question.free')->with(['success'=>__('global.status_changed')]);
+
+        }
+        catch (\Exception $e) {
+
+            return redirect()->route('dashboard.question.index')->with(['error'=>__('global.try_again')]);
+        }
+    }
+
+    public function indexFreeQuestions()
+    {
+        $freeQuestions = Question::where('free',1)->get();
+        return view('dashboard.questions.free',compact('freeQuestions'));
     }
 }

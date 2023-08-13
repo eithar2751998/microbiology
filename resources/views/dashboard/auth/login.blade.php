@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<!-- Mirrored from themesbox.in/admin-templates/theta/html/dark-vertical/user-login.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 08 Nov 2020 14:39:30 GMT -->
+<!-- Mirrored from themesbox.in/admin-templates/theta/html/dark-vertical/user-login.blade.php by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 08 Nov 2020 14:39:30 GMT -->
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -87,5 +87,5 @@
     <!-- End js -->
 </body>
 
-<!-- Mirrored from themesbox.in/admin-templates/theta/html/dark-vertical/user-login.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 08 Nov 2020 14:39:30 GMT -->
+<!-- Mirrored from themesbox.in/admin-templates/theta/html/dark-vertical/user-login.blade.php by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 08 Nov 2020 14:39:30 GMT -->
 </html>

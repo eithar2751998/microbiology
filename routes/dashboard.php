@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::group(['namespace' => 'Dashboard', 'middleware' => 'guest:admins'], function () {
     Route::get('login', [App\Http\Controllers\Dashboard\LoginController::class, 'getLogin'])->name('dashboard.login.view');
     Route::post('login', [App\Http\Controllers\Dashboard\LoginController::class, 'login'])->name('dashboard.login');
-    
+
 });
 
 
@@ -116,6 +116,8 @@ Route::group(['namespace' => 'Dashboard', 'middleware' => 'auth:admins'], functi
         Route::get('', [App\Http\Controllers\Dashboard\QuestionController::class, 'index'])->name('dashboard.question.index');
         Route::get('add', [App\Http\Controllers\Dashboard\QuestionController::class, 'create'])->name('dashboard.question.create');
         Route::get('{question}/edit', [App\Http\Controllers\Dashboard\QuestionController::class, 'edit'])->name('dashboard.question.edit');
+        Route::get('{question}/addToFree', [App\Http\Controllers\Dashboard\QuestionController::class, 'AddToFree'])->name('dashboard.question.addToFree');
+        Route::get('free', [App\Http\Controllers\Dashboard\QuestionController::class, 'indexFreeQuestions'])->name('dashboard.question.free');
         Route::get('{question}/change_status', [App\Http\Controllers\Dashboard\QuestionController::class, 'changeStatus'])->name('dashboard.question.change_status');
         Route::get('{question}/show', [App\Http\Controllers\Dashboard\QuestionController::class, 'show'])->name('dashboard.question.show');
         Route::get('{question}/restore', [App\Http\Controllers\Dashboard\QuestionController::class, 'restore'])->name('dashboard.question.restore');

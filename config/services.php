@@ -31,4 +31,15 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'google' => [
+        'client_id' => '403597740777-ff6ns8nqsfqh4rrono1fe69585ruhifj.apps.googleusercontent.com',
+        'client_secret' => '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',
+        'redirect' => 'http://127.0.0.1:8000/authorized/google/callback',
+    ],
+    'facebook' => [
+        'client_id' => '1315118776072117', //USE FROM FACEBOOK DEVELOPER ACCOUNT
+        'client_secret' => '1db2bef3e65eb8f101c1848eaecec711', //USE FROM FACEBOOK DEVELOPER ACCOUNT
+        'redirect' => 'https://127.0.0.1:8000/authorized/facebook/callback'
+    ],
+
 ];

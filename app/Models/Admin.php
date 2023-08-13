@@ -12,6 +12,9 @@ class Admin extends Authenticatable
 {
     use HasFactory, SoftDeletes, HasRoles;
 
+    protected $guard = "admins";
+
+
     /**
      * The attributes that are mass assignable.
      *

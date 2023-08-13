@@ -82,6 +82,11 @@
                         <img src="{{asset('assets/dashboard/images/svg-icon/question-mark.png')}}" class="img-fluid" alt="layouts"><span>Questions</span>
                     </a>
                 </li>
+                <li>
+                    <a href="{{route('dashboard.question.free')}}">
+                        <img src="{{asset('assets/dashboard/images/svg-icon/question-mark.png')}}" class="img-fluid" alt="layouts"><span>Free Questions</span>
+                    </a>
+                </li>
 
                 <li>
                     <a>

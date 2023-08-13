@@ -16,7 +16,8 @@ class Question extends Model
      */
     protected $fillable = [
         'title',
-        'image'
+        'image',
+        'free',
     ];
 
     public function subjects()

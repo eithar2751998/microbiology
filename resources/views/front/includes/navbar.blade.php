@@ -18,16 +18,33 @@
                         </ul>
                     </div>
                     <div class="col-md-6 text-right">
-                        <ul class="topbar-right">
-                            <li class="login-register">
-                                <i class="fa fa-sign-in"></i>
-                                <a href="#">Login</a> /
-                                <a href="#">Register</a>
-                            </li>
-{{--                            <li class="btn-part">--}}
-{{--                                <a class="apply-btn" href="#">Apply Now</a>--}}
-{{--                            </li>--}}
-                        </ul>
+                        @if (Route::has('login'))
+                            <ul class="topbar-right">
+                                <li class="login-register">
+                                    @auth
+                                    <a href="" >{{Auth::user()->name}}</a>
+                                        <form method="POST" action="{{ route('logout') }}">
+                                            @csrf
+
+                                            <x-dropdown-link :href="route('logout')"
+                                                             onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+                                                {{ __('Log Out') }}
+                                            </x-dropdown-link>
+                                        </form>
+                                </li>
+                            </ul>
+                        @else
+                            <ul class="topbar-right">
+                                <li class="login-register">
+                                    <i class="fa fa-sign-in"></i>
+                                    <a href="{{route('login')}}">Login</a> /
+                                    <a href="{{route('register')}}">Register</a>
+                                </li>
+                            </ul>
+                        @endauth
+                        @endif
+
                     </div>
                 </div>
             </div>
@@ -41,7 +58,7 @@
                     <div class="col-lg-4">
                         <div class="logo-cat-wrap">
                             <div class="logo-part pr-90">
-                                <a href="{{url('/')}}">
+                                <a href="{{route('home')}}">
                                     <img src="{{asset('assets/front/images/logo.png')}}" alt="">
                                 </a>
                             </div>
@@ -58,7 +75,7 @@
                                 <nav class="rs-menu">
                                     <ul class="nav-menu">
                                         <li class="rs-mega-menu mega-rs  current-menu-item">
-                                            <a href="{{url('/')}}">Home</a>
+                                            <a href="{{route('home')}}">Home</a>
                                         </li>
                                         <li class="menu-item-has-children">
                                             <a href="#">Courses</a>

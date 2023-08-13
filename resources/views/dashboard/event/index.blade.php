@@ -170,8 +170,8 @@
     </script>
     <script>
         setTimeout(function() {
-            $('#alert').fadeOut('fast');
-        }, 3000);
+            $('#alert').fadeOut('slow');
+        }, 60000);
     </script>
 @endsection
 
