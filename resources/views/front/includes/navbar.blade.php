@@ -80,16 +80,16 @@
                                         <li class="menu-item-has-children">
                                             <a href="#">Courses</a>
                                             <ul class="sub-menu">
-                                                <li class="menu-item-has-children right">
-                                                    @foreach($courses as $course)
-                                                    <a href="#">{{$course->name}}</a>
-                                                    <ul class="sub-menu right">
-                                                        @foreach($course->subjects()->paginate(3) as $topic)
-                                                        <li><a href="#">{{$topic->name}}</a></li>
-                                                        @endforeach
-                                                    </ul>
-                                                    @endforeach
-                                                </li>
+                                                @foreach($courses as $course)
+                                                    <li class="menu-item-has-children">
+                                                        <a href="#">{{$course->name}}</a>
+                                                        <ul class="sub-menu">
+                                                            @foreach($course->subjects()->paginate(3) as $topic)
+                                                                <li><a href="">{{$topic->name}}</a></li>
+                                                            @endforeach
+                                                        </ul>
+                                                    </li>
+                                                @endforeach
                                             </ul>
                                         </li>
                                     </ul> <!-- //.nav-menu -->

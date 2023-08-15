@@ -3,7 +3,6 @@
     <link href="{{asset('assets/dashboard/plugins/select2/select2.min.css')}}" rel="stylesheet" type="text/css">
     <link href="{{asset('assets/dashboard/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css')}}" rel="stylesheet" type="text/css">
     <link href="{{asset('assets/dashboard/plugins/bootstrap-tagsinput/bootstrap-tagsinput-typeahead.css')}}" rel="stylesheet" type="text/css">
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
 @endsection
 @section('content')
     <div class="breadcrumbbar">
@@ -30,8 +29,8 @@
                     <form action="{{ route("dashboard.question.store") }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group mt-3">
-                            <label for="summernote">{{ __('admin/global.title') }} *</label>
-                            <textarea id="summernote" name="title" >{{{old('title')}}}</textarea>
+                            <label for="title">{{ __('admin/global.title') }} *</label>
+                            <textarea id="title" class="tinymce-editor" name="title" >{{{old('title')}}}</textarea>
                             @if($errors->has('title'))
                                 <span class="text-danger">{{ $errors->first('title') }}</span>
                             @endif
@@ -96,7 +95,7 @@
 
 
     <script src="{{asset('assets/dashboard/plugins/select2/select2.min.js')}}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+    <script src="{{asset('assets/dashboard/js/tinymce.min.js')}}"></script>
     <script type="text/javascript">
         var i = 0;
         $("#dynamic-ar").click(function () {
@@ -113,19 +112,11 @@
         });
 
 
-        $('#summernote').summernote({
-            toolbar: [
-                // [groupName, [list of button]]
-                ['style', ['bold', 'italic', 'underline', 'clear']],
-                // ['font', ['strikethrough', 'superscript', 'subscript']],
-                ['fontsize', ['fontsize']],
-                ['color', ['color']],
-                // ['para', ['ul', 'ol', 'paragraph']],
-                // ['height', ['height']],
-                // ['insert', ['picture']],
-            ],
-            height: 60,
-            width: 500
+        tinymce.init({
+            selector: '.tinymce-editor',
+            plugins: 'autolink link lists',
+            toolbar: 'undo redo | formatselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link',
+            menubar: false,
         });
 
     </script>

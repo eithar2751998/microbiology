@@ -13,6 +13,10 @@ return [
     'date'          => 'Date',
     'time'          => 'Time',
     'desc'          =>'Description',
+    'price'         => 'Price',
+    'billing_cycle' => 'Billing Cycle',
+    'max_users'     => 'Max Users',
+    'trial_days'    => 'Trial Days',
 
 
 ];

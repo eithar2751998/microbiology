@@ -7,7 +7,7 @@
                 <div class="breadcrumb-list">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{route('dashboard.home')}}">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Questions</li>
+                        <li class="breadcrumb-item active" aria-current="page">Free Questions</li>
                     </ol>
                 </div>
             </div>
@@ -28,7 +28,7 @@
                     <div class="card-header">
                         <div class="row align-items-center">
                             <div class="col-8">
-                                <h5 class="card-title mb-0 ">All Questions</h5>
+                                <h5 class="card-title mb-0 ">Free Questions</h5>
                             </div>
                             <div class="col-4">
                                 <a href="{{ route('dashboard.question.create')}}" class="btn btn-primary"> Add</a>

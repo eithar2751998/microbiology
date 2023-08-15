@@ -126,5 +126,14 @@ Route::group(['namespace' => 'Dashboard', 'middleware' => 'auth:admins'], functi
         Route::delete('{question}/delete', [App\Http\Controllers\Dashboard\QuestionController::class, 'destroy'])->name('dashboard.question.delete');
         Route::delete('{question}/forceDelete', [App\Http\Controllers\Dashboard\QuestionController::class, 'forceDelete'])->name('dashboard.question.forceDelete');
     });
+    Route::group(['prefix' =>'pricing'], function(){
+        Route::get('', [App\Http\Controllers\Dashboard\PricingPlanController::class, 'index'])->name('dashboard.pricing.index');
+        Route::get('add', [App\Http\Controllers\Dashboard\PricingPlanController::class, 'create'])->name('dashboard.pricing.create');
+        Route::get('{pricing}/edit', [App\Http\Controllers\Dashboard\PricingPlanController::class, 'edit'])->name('dashboard.pricing.edit');
+        Route::get('{pricing}/show', [App\Http\Controllers\Dashboard\PricingPlanController::class, 'show'])->name('dashboard.pricing.show');
+        Route::post('store', [App\Http\Controllers\Dashboard\PricingPlanController::class, 'store'])->name('dashboard.pricing.store');
+        Route::put('{pricing}/update', [App\Http\Controllers\Dashboard\PricingPlanController::class, 'update'])->name('dashboard.pricing.update');
+        Route::delete('{pricing}/delete', [App\Http\Controllers\Dashboard\PricingPlanController::class, 'destroy'])->name('dashboard.pricing.delete');
+    });
 
 });

@@ -37,7 +37,7 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-borderless">
+                            <table id="datatable-buttons" class="table table-striped table-bordered">
                                 <thead>
                                 <tr>
                                     <th width="10">

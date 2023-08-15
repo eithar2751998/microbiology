@@ -13,6 +13,10 @@
         <link rel="shortcut icon" href="{{asset('assets/dashboard/images/smalllogo.png')}}">
         <!-- Start CSS -->
         <link href="{{asset('assets/dashboard/plugins/switchery/switchery.min.css')}}" rel="stylesheet">
+        <link href="{{asset('assets/dashboard/plugins/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet" type="text/css" >
+        <link href="{{asset('assets/dashboard/plugins/datatables/buttons.bootstrap4.min.css')}}" rel="stylesheet" type="text/css" >
+        <!-- Responsive Datatable css -->
+        <link href="{{asset('assets/dashboard/plugins/datatables/responsive.bootstrap4.min.css')}}" rel="stylesheet" type="text/css" >
         @yield('styles')
         <!-- Datepicker css -->
         <link href="{{asset('assets/dashboard/plugins/datepicker/datepicker.min.css')}}" rel="stylesheet" type="text/css">
@@ -38,7 +42,7 @@
             </div>
         </div>
         @include('dashboard.includes.footer')
-        <script src="{{asset('assets/dashboard/js/jquery-3.5.1.min.js')}}" crossorigin="anonymous"></script>
+        <script src="{{asset('assets/dashboard/js/jquery.min.js')}}" crossorigin="anonymous"></script>
         <script src="{{asset('assets/dashboard/js/popper.min.js')}}"></script>
         <script src="{{asset('assets/dashboard/js/bootstrap.min.js')}}"></script>
         <script src="{{asset('assets/dashboard/js/modernizr.min.js')}}"></script>
@@ -46,11 +50,27 @@
         <script src="{{asset('assets/dashboard/js/jquery.slimscroll.js')}}"></script>
         <script src="{{asset('assets/dashboard/js/vertical-menu.js')}}"></script>
 
-        <script src="{{asset('assets/dashboard/plugins/switchery/switchery.min.js')}}"></script>
-        <script src="{{asset('assets/dashboard/js/bootstrap.bundle.min.js')}}" ></script>
-        @yield('scripts')
+{{--        <script src="{{asset('assets/dashboard/plugins/switchery/switchery.min.js')}}"></script>--}}
+{{--        <script src="{{asset('assets/dashboard/js/bootstrap.bundle.min.js')}}" ></script>--}}
+        <!-- Datatable js -->
+{{--        <script src="{{asset('assets/dashboard/plugins/datatables/jquery.dataTables.min.js')}}"></script>--}}
+{{--        <script src="{{asset('assets/dashboard/plugins/datatables/dataTables.bootstrap4.min.js')}}"></script>--}}
+{{--        <script src="{{asset('assets/dashboard/plugins/datatables/dataTables.buttons.min.js')}}"></script>--}}
+{{--        <script src="{{asset('assets/dashboard/plugins/datatables/buttons.bootstrap4.min.js')}}"></script>--}}
+{{--        <script src="{{asset('assets/dashboard/plugins/datatables/jszip.min.js')}}"></script>--}}
+{{--        <script src="{{asset('assets/dashboard/plugins/datatables/pdfmake.min.js')}}"></script>--}}
+{{--        <script src="{{asset('assets/dashboard/plugins/datatables/vfs_fonts.js')}}"></script>--}}
+{{--        <script src="{{asset('assets/dashboard/plugins/datatables/buttons.html5.min.js')}}"></script>--}}
+{{--        <script src="{{asset('assets/dashboard/plugins/datatables/buttons.print.min.js')}}"></script>--}}
+{{--        <script src="{{asset('assets/dashboard/plugins/datatables/buttons.colVis.min.js')}}"></script>--}}
+{{--        <script src="{{asset('assets/dashboard/plugins/datatables/dataTables.responsive.min.js')}}"></script>--}}
+{{--        <script src="{{asset('assets/dashboard/plugins/datatables/responsive.bootstrap4.min.js')}}"></script>--}}
+{{--        <script src="{{asset('assets/dashboard/js/custom/custom-table-datatable.js')}}"></script>--}}
+{{--        <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>--}}
+
         <!-- Core js -->
-        <script src="{{asset('assets/dashboard/js/core.js')}}"></script>
+{{--        <script src="{{asset('assets/dashboard/js/core.js')}}"></script>--}}
+        @yield('scripts')
 
 <!-- End js -->
     </body>

@@ -91,7 +91,7 @@
                                             <form action="{{ route('dashboard.question.delete', $question->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
                                                 <div class="button-list">
                                                     <a href="{{ route('dashboard.question.edit', $question->id) }}" class="btn btn-warning-rgba"><i class="feather icon-edit-2"></i></a>
-                                                    <a href="{{ route('dashboard.question.addToFree', $question->id) }}" class="btn btn-warning-rgba"><i class="feather icon-edit-2"></i></a>
+                                                    <a href="{{ route('dashboard.question.addToFree', $question->id) }}" class="btn btn-success-rgba"><i class=" fa fa-plus"></i></a>
                                                     <a href="javascript:void(0)" id="show-question" data-url="{{ route('dashboard.question.show', $question->id)}}" class="btn btn-primary model-animation-btn" data-animation="zoomIn">
                                                         <i class="feather icon-eye"></i>
                                                     </a>

@@ -84,7 +84,12 @@
                 </li>
                 <li>
                     <a href="{{route('dashboard.question.free')}}">
-                        <img src="{{asset('assets/dashboard/images/svg-icon/question-mark.png')}}" class="img-fluid" alt="layouts"><span>Free Questions</span>
+                        <img src="{{asset('assets/dashboard/images/svg-icon/conversation.png')}}" class="img-fluid" alt="layouts"><span>Free Questions</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{route('dashboard.pricing.index')}}">
+                        <img src="{{asset('assets/dashboard/images/svg-icon/price.png')}}" class="img-fluid" alt="layouts"><span>Pricing Plan</span>
                     </a>
                 </li>
 

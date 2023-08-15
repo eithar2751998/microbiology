@@ -15,7 +15,18 @@ return new class extends Migration
     {
         Schema::create('pricing_plans', function (Blueprint $table) {
             $table->id();
-            $table->text('user_agent')->nullable();
+            $table->string('name');
+            $table->text('description');
+            $table->decimal('price', 10, 2);
+            $table->string('currency', 3)->default('$');
+            $table->enum('billing_cycle', ['monthly', 'annually']);
+            $table->integer('trial_days')->nullable();
+            $table->json('features')->nullable();
+            $table->integer('max_users')->nullable();
+            $table->integer('storage_space')->nullable();
+            $table->string('support_level')->nullable();
+            $table->boolean('is_featured')->default(false);
+            $table->integer('order')->default(0);
             $table->timestamps();
         });
     }
