@@ -59,6 +59,9 @@
                                         {{ __('admin/global.trial_days') }}
                                     </th>
                                     <th>
+                                        {{__('global.status')}}
+                                    </th>
+                                    <th>
                                         {{ __('admin/global.actions') }}
                                     </th>
                                 </tr>
@@ -72,9 +75,21 @@
                                     <td>{{$plan->billing_cycle}}</td>
                                     <td>{{$plan->trial_days}}</td>
                                     <td>
-                                        <form action="{{ route('dashboard.pricing.delete', $plan->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
+                                        @if($plan->status == 1)
+                                            <span class="badge badge-success">Active</span>
+                                        @else
+                                            <span class="badge badge-danger">In Active</span>
+
+                                        @endif
+                                    </td>
+                                    <td>
+                                        <form action="{{ route('dashboard.pricing.delete', $plan->id ) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
                                             <div class="button-list">
-                                                <a href="{{ route('dashboard.pricing.edit', $plan->id) }}" class="btn btn-warning-rgba"><i class="feather icon-edit-2"></i></a>
+                                                <a href="{{ route('dashboard.pricing.edit', $plan->id ) }}" class="btn btn-warning-rgba"><i class="feather icon-edit-2"></i></a>
+                                                <a href="{{ route('dashboard.pricing.change_status', $plan->id )}}" class="btn btn-success-rgba"
+                                                   onclick="return confirm('{{__('global.change_status')}}');">
+                                                    <i class="feather icon-refresh-ccw"></i>
+                                                </a>
                                                 <input type="hidden" name="_method" value="DELETE">
                                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                                 <button type="submit" class="btn btn-danger-rgba" ><i class="feather icon-trash"></i></button>

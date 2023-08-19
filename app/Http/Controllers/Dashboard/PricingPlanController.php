@@ -9,6 +9,7 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Symfony\Component\Process\Process;
 
 class PricingPlanController extends Controller
 {
@@ -119,6 +120,21 @@ class PricingPlanController extends Controller
             return redirect()->route('dashboard.pricing.index')->with(['error' => __('global.data_error')]);
 
         }
+    }
 
+    public function changeStatus($id): RedirectResponse
+    {
+        try {
+            $plan = PricingPlan::find($id);
+            $status = $plan->status = 0 ? 1 : 0;
+            $plan->update(['status' => $status]);
+
+            return redirect()->route('dashboard.pricing.index')->with(['success'=>__('global.status_changed')]);
+
+        }
+        catch (\Exception $e) {
+
+            return redirect()->route('dashboard.pricing.index')->with(['error'=>__('global.try_again')]);
+        }
     }
 }

@@ -27,6 +27,7 @@ return new class extends Migration
             $table->string('support_level')->nullable();
             $table->boolean('is_featured')->default(false);
             $table->integer('order')->default(0);
+            $table->integer('status')->default(1);
             $table->timestamps();
         });
     }
