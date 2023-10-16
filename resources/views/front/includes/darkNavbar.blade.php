@@ -92,15 +92,21 @@
                                                 @endforeach
                                             </ul>
                                         </li>
+                                        <li class="rs-mega-menu mega-rs  current-menu-item">
+                                            <a href="{{route('plans')}}">PRO +</a>
+                                        </li>
+                                        <li class="rs-mega-menu mega-rs ">
+                                             <a href="{{route('question')}}">Questions</a>
+                                        </li>
                                     </ul> <!-- //.nav-menu -->
                                 </nav>
                             </div> <!-- //.main-menu -->
                             <div class="expand-btn-inner">
                                 <ul>
                                     <li>
-                                        <a class="hidden-xs rs-search " data-target=".search-modal" data-toggle="modal" href="#">
-                                            <i class="flaticon-search" style="color: #fff!important;"></i>
-                                        </a>
+{{--                                        <a class="hidden-xs rs-search " data-target=".search-modal" data-toggle="modal" href="#">--}}
+{{--                                            <i class="flaticon-search" style="color: #fff!important;"></i>--}}
+{{--                                        </a>--}}
                                     </li>
                                 </ul>
                             </div>

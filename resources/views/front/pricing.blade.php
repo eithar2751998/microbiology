@@ -16,10 +16,11 @@
                             <li><i class="fa fa-calendar"></i>{{Carbon\Carbon::create($plan->created_at)->toFormattedDateString()}}</li>
                         </ul>
                         <h3 class="title text-capitalize"><a href="blog-single.html"> {{$plan->name}} </a></h3>
-                        <div class="desc"> {{$plan->description}} </div>
+                        <div class="desc"> {!! $plan->description !!} </div>
                         <ul class="blog-bottom">
 {{--                            <li class="cmnt-part"><a href="#">(12) Comments</a></li>--}}
-{{--                            <li class="btn-part"><a class="readon-arrow" href="#">Read More</a></li>--}}
+                            <input type="hidden" name="amount" value = {{$plan->price}}>
+                            <li class="btn-part"><a class="readon-arrow" href="{{ route('payment',$plan->id) }}">Add To Cart</a></li>
                         </ul>
                     </div>
                 </div>

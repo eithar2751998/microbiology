@@ -1,4 +1,4 @@
-<div class="full-width-header header-style2 modify1">
+    <div class="full-width-header header-style2 modify1">
     <!--Header Start-->
     <header id="rs-header" class="rs-header">
         <!-- Topbar Area Start -->
@@ -92,15 +92,21 @@
                                                 @endforeach
                                             </ul>
                                         </li>
+                                        <li class="rs-mega-menu mega-rs">
+                                            <a href="{{route('plans')}}">PRO +</a>
+                                        </li>
+                                        <li class="rs-mega-menu mega-rs">
+                                            <a href="{{route('question')}}">Questions</a>
+                                        </li>
                                     </ul> <!-- //.nav-menu -->
                                 </nav>
                             </div> <!-- //.main-menu -->
                             <div class="expand-btn-inner">
                                 <ul>
                                     <li>
-                                        <a class="hidden-xs rs-search " data-target=".search-modal" data-toggle="modal" href="#">
-                                            <i class="flaticon-search"></i>
-                                        </a>
+{{--                                        <a class="hidden-xs rs-search " data-target=".search-modal" data-toggle="modal" href="#">--}}
+{{--                                            <i class="flaticon-search"></i>--}}
+{{--                                        </a>--}}
                                     </li>
                                 </ul>
                             </div>

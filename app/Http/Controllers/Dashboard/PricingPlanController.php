@@ -126,8 +126,9 @@ class PricingPlanController extends Controller
     {
         try {
             $plan = PricingPlan::find($id);
-            $status = $plan->status = 0 ? 1 : 0;
+            $status = $plan->status == 0 ? 1 : 0;
             $plan->update(['status' => $status]);
+//            dd($status,$plan->status);
 
             return redirect()->route('dashboard.pricing.index')->with(['success'=>__('global.status_changed')]);
 

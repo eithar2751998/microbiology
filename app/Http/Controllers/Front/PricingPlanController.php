@@ -18,7 +18,7 @@ class PricingPlanController extends Controller
      */
     public function index()
     {
-        $plans = PricingPlan::all();
+        $plans = PricingPlan::where('status',1)->paginate(4);
         return view('front.pricing',compact('plans'));
     }
 

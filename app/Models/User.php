@@ -61,4 +61,8 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+    public function plans()
+    {
+        return $this->belongsToMany(PricingPlan::class,'subscriptions','plan_id','id');
+    }
 }
