@@ -115,10 +115,10 @@
                     <h2 class="title mb-0">Our Top Courses</h2>
                 </div>
                 <div class="row">
-                    @foreach($courses as $course)
+                @foreach($courses as $course)
                         <div class="col-lg-4 col-md-6 mb-30">
                             <div class="subject-wrap bgc1">
-                                <img style="width: 142px;height: 117px" class="rounded-circle" src="{{asset('departments/'.$course->name.'/'.$course->image)}}" alt="">
+                                <img style="width: 142px;height: 117px" class="rounded-circle" src="{{asset('department/'.$course->name.'/'.$course->image)}}" alt="">
                                 <h4 class="title text-capitalize"><a href="#">{{$course->name}}</a></h4>
                                 <span class="course-qnty text-capitalize">
                                 @if($course->subjects()->count()<10)
@@ -132,7 +132,7 @@
                     @endforeach
                 </div>
                 <div class="btn-part text-center mt-30">
-                    <a class="readon3 dark-hov" href="#">View All Courses</a>
+                    <a class="readon3 dark-hov" href="{{route('front.course.index')}}">View All Courses</a>
                 </div>
             </div>
         </div>

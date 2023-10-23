@@ -6,6 +6,7 @@ use App\Models\PricingPlan;
 use App\Models\Question;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 use Livewire\Component;
 
 class QuestionPage extends Component
@@ -17,20 +18,26 @@ class QuestionPage extends Component
     ];
 
     public function mount(){
-        if(auth()->user()){
-            $user = User::find(Auth::user()->id);
-            $plan = $user->plans->last();
-            if(!empty($plan)){
-                $this->questions = Question::inRandomOrder()->limit($plan->number_of_questions)->get();
+        if(Route::current()->uri() == "free-trial"){
+            $this->questions = Question::where('free',1)->inRandomOrder()->limit(10)->get();
+        }
+        else{
+            if(auth()->user()){
+                $user = User::find(Auth::user()->id);
+                $plan = $user->plans->last();
+                if(!empty($plan)){
+                    $this->questions = Question::inRandomOrder()->limit($plan->number_of_questions)->get();
+                }
+                else{
+                    $this->questions = Question::where('free',1)->inRandomOrder()->limit(10)->get();
+                }
             }
             else{
                 $this->questions = Question::where('free',1)->inRandomOrder()->limit(10)->get();
             }
+            $this->question_count  = $this->questions->count();
         }
-        else{
-            $this->questions = Question::where('free',1)->inRandomOrder()->limit(10)->get();
-        }
-        $this->question_count  = $this->questions->count();
+
     }
     public function render()
     {

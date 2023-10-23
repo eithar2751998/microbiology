@@ -1,4 +1,6 @@
-
+@extends('layouts.home')
+@section('content')
+    <!--Full width header Start-->
        <!--Full width header Start-->
             @include('front.includes.darkNavbar')
 {{--        <!--Full width header End-->--}}
@@ -30,7 +32,7 @@
                           <div class="col-lg-4 col-md-6 mb-30">
                               <div class="courses-item">
                                   <div class="img-part">
-                                      <img src="{{asset('departments/'.$course->name.'/'.$course->image)}}" alt="" style="width: 358px; height: 220px">
+                                      <img src="{{asset('department/'.$course->name.'/'.$course->image)}}" alt="" style="width: 358px; height: 220px">
                                   </div>
                                   <div class="content-part">
                                       <h3 class="title"><a href=""> {{$course->name}} </a></h3>

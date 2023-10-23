@@ -82,7 +82,7 @@
                                             <ul class="sub-menu">
                                                 @foreach($courses as $course)
                                                     <li class="menu-item-has-children">
-                                                        <a href="#">{{$course->name}}</a>
+                                                        <a href="{{route('front.course.subjects',$course->id)}}">{{$course->name}}</a>
                                                         <ul class="sub-menu">
                                                             @foreach($course->subjects()->paginate(3) as $topic)
                                                                 <li><a href="">{{$topic->name}}</a></li>
@@ -93,10 +93,10 @@
                                             </ul>
                                         </li>
                                         <li class="rs-mega-menu mega-rs">
-                                            <a href="{{route('plans')}}">PRO +</a>
+                                            <a href="{{route('plans')}}">Pricing</a>
                                         </li>
                                         <li class="rs-mega-menu mega-rs">
-                                            <a href="{{route('question')}}">Questions</a>
+                                            <a href="{{route('free_trial')}}">Free Trial</a>
                                         </li>
                                     </ul> <!-- //.nav-menu -->
                                 </nav>

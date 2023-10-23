@@ -35,7 +35,7 @@ Route::get('/home', function () {
 //Route::get('/', function () {
 //    return view('welcome');
 //});
-Route::view('question', 'question-page')->name('question');
+Route::view('free-trial', 'question-page')->name('free_trial');
 
 
 Route::get('payment/{plan}',[PayPalController::class,'payment'])->name('payment')->middleware('checkUserLoggedIn');

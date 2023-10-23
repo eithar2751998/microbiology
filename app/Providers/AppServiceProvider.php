@@ -30,7 +30,7 @@ class AppServiceProvider extends ServiceProvider
 
         View::composer('*', function($view)
         {
-            $courses = Department::where('status',1)->paginate(5);
+            $courses = Department::where('status',1)->paginate(6);
             $view->with('courses',$courses);
         });
     }
