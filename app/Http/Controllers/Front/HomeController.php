@@ -8,6 +8,7 @@ use App\Models\About;
 use App\Models\Commingsoon;
 use App\Models\Department;
 use App\Models\Event;
+use App\Models\Term;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -129,5 +130,10 @@ class HomeController extends Controller
 
             return redirect('/')->with('success', 'Your message has been sent!');
 
+    }
+
+    public function getTerms(){
+        $term = Term::all()->last();
+        return view('front.terms_and_conditions',compact('term'));
     }
 }

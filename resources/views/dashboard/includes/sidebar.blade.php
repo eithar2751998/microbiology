@@ -50,6 +50,19 @@
                         </a>
                     </li>
                 @endif
+                @if(\App\Models\Term::all()->count() < 1)
+                    <li>
+                        <a href="{{route('dashboard.term.create')}}">
+                            <img src="{{asset('assets/dashboard/images/svg-icon/info.png')}}" class="img-fluid" alt="term"><span>Terms & Conditions</span>
+                        </a>
+                    </li>
+                @else
+                    <li>
+                        <a href="{{route('dashboard.term.index')}}">
+                            <img src="{{asset('assets/dashboard/images/svg-icon/info.png')}}" class="img-fluid" alt="about"><span>Terms & Conditions</span>
+                        </a>
+                    </li>
+                @endif
 
 
                 <li>

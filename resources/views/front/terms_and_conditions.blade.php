@@ -26,6 +26,7 @@
         <div id="rs-popular-courses" class="rs-popular-courses style4 orange-color pt-110 pb-120 md-pt-70 md-pb-80">
             <div class="container">
                 <div class="row">
+                    {!! $term->content !!}
                 </div>
             </div>
         </div>

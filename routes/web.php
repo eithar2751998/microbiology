@@ -25,7 +25,7 @@ Route::get('authorized/google/callback', [App\Http\Controllers\Front\Auth\LoginW
 Route::get('authorized/facebook', [App\Http\Controllers\Front\Auth\LoginWithFacebookController::class, 'redirectToFacebook']);
 Route::get('authorized/facebook/callback', [App\Http\Controllers\Front\Auth\LoginWithFacebookController::class, 'handleFacebookCallback']);
 
-Route::get('/', [App\Http\Controllers\Front\HomeController::class, 'index'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('courses', [App\Http\Controllers\Front\CourseController::class, 'index'])->name('front.course.index');
 Route::get('course/{id}/subjects', [App\Http\Controllers\Front\CourseController::class, 'subjects'])->name('front.course.subjects');
@@ -41,7 +41,7 @@ Route::get('/home', function () {
 //});
 Route::view('free-trial', 'question-page')->name('free_trial');
 Route::view('questions/subjects/{id}', 'question-page')->name('questions_subjects');
-Route::view('terms_and_conditions','front.terms_and_conditions')->name('terms');
+Route::get('terms_and_conditions',[HomeController::class,'getTerms'])->name('terms');
 Route::get('all_reviews',[ReviewController::class,'index'])->name('all_reviews');
 Route::get('reviews',[ReviewController::class,'create'])->name('reviews.create')->middleware('checkUserLoggedIn');
 Route::post('reviews',[ReviewController::class,'store'])->name('reviews.store');

@@ -136,9 +136,16 @@ Route::group(['namespace' => 'Dashboard', 'middleware' => 'auth:admins'], functi
         Route::put('{pricing}/update', [App\Http\Controllers\Dashboard\PricingPlanController::class, 'update'])->name('dashboard.pricing.update');
         Route::delete('{pricing}/delete', [App\Http\Controllers\Dashboard\PricingPlanController::class, 'destroy'])->name('dashboard.pricing.delete');
     });
- Route::group(['prefix' =>'reviews'], function(){
+     Route::group(['prefix' =>'reviews'], function(){
         Route::get('', [App\Http\Controllers\ReviewController::class, 'index_dashboard'])->name('dashboard.review.index');
         Route::get('{pricing}/change_status', [App\Http\Controllers\ReviewController::class, 'changeStatus'])->name('dashboard.review.change_status');
-    });
+        });
+     Route::group(['prefix' =>'terms'], function(){
+         Route::get('', [App\Http\Controllers\TermController::class, 'index'])->name('dashboard.term.index');
+         Route::get('add', [App\Http\Controllers\TermController::class, 'create'])->name('dashboard.term.create');
+         Route::get('{term}/edit', [App\Http\Controllers\TermController::class, 'edit'])->name('dashboard.term.edit');
+         Route::post('store', [App\Http\Controllers\TermController::class, 'store'])->name('dashboard.term.store');
+         Route::put('{term}/update', [App\Http\Controllers\TermController::class, 'update'])->name('dashboard.term.update');
+     });
 
 });
