@@ -110,11 +110,12 @@ class HomeController extends Controller
         return view('front.contact_us');
     }
     public function sendContactUs(Request $request){
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required|email',
-            'message' => 'required',
-        ]);
+//        $request->validate([
+//            'name' => 'required',
+//            'email' => 'required|email',
+//            'message' => 'required',
+//        ]);
+//        dd('test');
 
         $data = [
             'name' => $request->input('name'),
@@ -123,7 +124,8 @@ class HomeController extends Controller
         ];
 
         // Change 'to' to your desired email address
-        Mail::to('your-email@example.com')->send(new ContactMail($data));
+//        Mail::to('your-email@example.com')->send(new ContactMail($data));
+        dd(Mail::to('micro.info@success-micro.com')->send(new ContactMail($data)));
 
             return redirect('/home')->with('success', 'Your message has been sent!');
 
