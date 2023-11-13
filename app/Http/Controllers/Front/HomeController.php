@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
+use App\Mail\ContactMail;
 use App\Models\About;
 use App\Models\Commingsoon;
 use App\Models\Department;
@@ -12,6 +13,7 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Mail;
 
 class HomeController extends Controller
 {
@@ -121,7 +123,7 @@ class HomeController extends Controller
         ];
 
         // Change 'to' to your desired email address
-        Mail::to('your-email@example.com')->send(new \App\Mail\ContactMail($data));
+        Mail::to('your-email@example.com')->send(new ContactMail($data));
 
             return redirect('/home')->with('success', 'Your message has been sent!');
 
