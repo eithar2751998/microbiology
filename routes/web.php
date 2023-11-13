@@ -51,7 +51,7 @@ Route::get('cancel',[PayPalController::class,'cancel'])->name('payment.cancel');
 Route::get('payment/success',[PayPalController::class,'success'])->name('payment.success');
 
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::get('/', function () {
+        return view('front.index');
+    })->name('home');
 });

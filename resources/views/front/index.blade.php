@@ -206,7 +206,11 @@
                     @endforeach
                 </div>
             </div>
+            <div class="btn-part text-center  mt-30">
+                <a class="readon3 dark-hov" href="{{route('reviews.create')}}">Add Review</a>
+            </div>
         </div>
+
         <!-- Testimonial Section End -->
 
         <!-- events Section Start -->
