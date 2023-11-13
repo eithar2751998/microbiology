@@ -32,9 +32,9 @@ Route::get('course/{id}/subjects', [App\Http\Controllers\Front\CourseController:
 
 Route::get('pricing', [App\Http\Controllers\Front\PricingPlanController::class, 'index'])->name('plans');
 
-Route::get('/home', function () {
-    return view('dashboard');
-})->name('dashboard');
+//Route::get('/home', function () {
+//    return view('dashboard');
+//})->name('dashboard');
 
 //Route::get('/', function () {
 //    return view('welcome');
