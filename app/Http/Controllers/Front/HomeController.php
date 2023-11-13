@@ -115,12 +115,12 @@ class HomeController extends Controller
 //            'email' => 'required|email',
 //            'message' => 'required',
 //        ]);
-//        dd('test');
+//        dd($request);
 
         $data = [
-            'name' => $request->input('name'),
-            'email' => $request->input('email'),
-            'message' => $request->input('message'),
+            'name' => $request->name,
+            'email' => $request->email,
+            'message' => $request->content,
         ];
 
         // Change 'to' to your desired email address
