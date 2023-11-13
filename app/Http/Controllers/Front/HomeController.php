@@ -127,7 +127,7 @@ class HomeController extends Controller
 //        Mail::to('your-email@example.com')->send(new ContactMail($data));
         Mail::to('micro.info@success-micro.com')->send(new ContactMail($data));
 
-            return redirect('/home')->with('success', 'Your message has been sent!');
+            return redirect('/')->with('success', 'Your message has been sent!');
 
     }
 }
