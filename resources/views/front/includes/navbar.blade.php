@@ -9,12 +9,12 @@
                         <ul class="topbar-contact">
                             <li>
                                 <i class="flaticon-email"></i>
-                                <a href="mailto:support@rstheme.com">support@rstheme.com</a>
+                                <a href="mailto:micro.info@success-micro.com">micro.info@success-micro.com</a>
                             </li>
-                            <li>
-                                <i class="flaticon-call"></i>
-                                <a href="tel:+0885898745">(+088) 589-8745</a>
-                            </li>
+{{--                            <li>--}}
+{{--                                <i class="flaticon-call"></i>--}}
+{{--                                <a href="tel:+0885898745">(+088) 589-8745</a>--}}
+{{--                            </li>--}}
                         </ul>
                     </div>
                     <div class="col-md-6 text-right">
