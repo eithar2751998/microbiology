@@ -41,10 +41,23 @@
     </div>
 </main>
 @push('js')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script>
         document.addEventListener('livewire:load', function() {
             Livewire.on('test', function(selected_answer) {
                 alert(selected_answer);
+            });
+        });
+
+        document.addEventListener('livewire:load', function () {
+            Livewire.on('showModal', function () {
+                Swal.fire({
+                    title: 'Completed Free Questions',
+                    text: 'If you need continue',
+                    icon: 'success',
+                }).then((result) => {
+                    window.location.href = '/pricing';
+                });
             });
         });
     </script>

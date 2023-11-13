@@ -103,4 +103,27 @@ class HomeController extends Controller
     {
         //
     }
+    public function contactUs(){
+
+        return view('front.contact_us');
+    }
+    public function sendContactUs(Request $request){
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'message' => 'required',
+        ]);
+
+        $data = [
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'message' => $request->input('message'),
+        ];
+
+        // Change 'to' to your desired email address
+        Mail::to('your-email@example.com')->send(new \App\Mail\ContactMail($data));
+
+            return redirect('/home')->with('success', 'Your message has been sent!');
+
+    }
 }

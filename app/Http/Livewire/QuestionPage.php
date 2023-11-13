@@ -4,10 +4,13 @@ namespace App\Http\Livewire;
 
 use App\Models\PricingPlan;
 use App\Models\Question;
+use App\Models\Subject;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Livewire\Component;
+use Illuminate\Http\Request;
+
 
 class QuestionPage extends Component
 {
@@ -17,16 +20,23 @@ class QuestionPage extends Component
         'questions.*.selected_answer' => 'required',
     ];
 
-    public function mount(){
-        if(Route::current()->uri() == "free-trial"){
+    public function mount(Request $request){
+            if(Route::current()->uri() == "free-trial"){
             $this->questions = Question::where('free',1)->inRandomOrder()->limit(10)->get();
         }
         else{
+
             if(auth()->user()){
                 $user = User::find(Auth::user()->id);
                 $plan = $user->plans->last();
                 if(!empty($plan)){
-                    $this->questions = Question::inRandomOrder()->limit($plan->number_of_questions)->get();
+                    if (Route::current()->uri() == "questions/subjects/{id}") {
+                        $id = $request->segment(3);
+                        $topic = Subject::find($id);
+                        $this->questions = $topic->questions()->inRandomOrder()->limit($plan->number_of_questions)->get();
+                    }
+                    else
+                        $this->questions = Question::inRandomOrder()->limit($plan->number_of_questions)->get();
                 }
                 else{
                     $this->questions = Question::where('free',1)->inRandomOrder()->limit(10)->get();
@@ -49,7 +59,7 @@ class QuestionPage extends Component
             $this->key++;
         }
         else {
-            return $this->redirect('/');
+            $this->emit('showModal');
         }
     }
     public function correct_answer($key){

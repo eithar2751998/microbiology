@@ -43,7 +43,7 @@
                                             <h2 class="text-capitalize" style="color: #21a7d0"> {{$course->name}} Topics</h2>
                                             <ul class="review-list">
                                                 @foreach($courseTopics as $topic)
-                                                    <li><a href="" class="text-capitalize">{{ $topic->name }}</a></li>
+                                                    <li><a href="{{route('questions_subjects',$topic->id)}}" class="text-capitalize">{{ $topic->name }}</a></li>
                                                 @endforeach
                                             </ul>
                                         </div>

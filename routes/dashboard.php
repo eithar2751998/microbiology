@@ -136,5 +136,9 @@ Route::group(['namespace' => 'Dashboard', 'middleware' => 'auth:admins'], functi
         Route::put('{pricing}/update', [App\Http\Controllers\Dashboard\PricingPlanController::class, 'update'])->name('dashboard.pricing.update');
         Route::delete('{pricing}/delete', [App\Http\Controllers\Dashboard\PricingPlanController::class, 'destroy'])->name('dashboard.pricing.delete');
     });
+ Route::group(['prefix' =>'reviews'], function(){
+        Route::get('', [App\Http\Controllers\ReviewController::class, 'index_dashboard'])->name('dashboard.review.index');
+        Route::get('{pricing}/change_status', [App\Http\Controllers\ReviewController::class, 'changeStatus'])->name('dashboard.review.change_status');
+    });
 
 });

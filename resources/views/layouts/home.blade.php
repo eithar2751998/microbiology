@@ -33,13 +33,16 @@
     <!-- spacing css -->
     <link rel="stylesheet" type="text/css" href="{{asset('assets/front/css/rs-spacing.css')}}">
 @yield('styles')
+    <link href="{{asset('assets/dashboard/plugins/pnotify/css/pnotify.custom.min.css')}}" rel="stylesheet" type="text/css">
 <!-- style css -->
     <link rel="stylesheet" type="text/css" href="{{asset('assets/front/style.css')}}"> <!-- This stylesheet dynamically changed from style.less -->
     <!-- responsive css -->
     <link rel="stylesheet" type="text/css" href="{{asset('assets/front/css/responsive.css')}}">
+
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+
     <![endif]-->
 
 </head>
@@ -119,6 +122,9 @@
 <!-- contact form js -->
 <script src="{{asset('assets/front/js/contact.form.js')}}"></script>
 @yield('scripts')
+<script src="{{asset('assets/dashboard/plugins/pnotify/js/pnotify.custom.min.js')}}"></script>
+<script src="{{asset('assets/dashboard/js/custom/custom-pnotify.js')}}"></script>
+
 <!-- main js -->
 <script src="{{asset('assets/front/js/main.js')}}"></script>
 </body>

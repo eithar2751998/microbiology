@@ -92,6 +92,11 @@
                         <img src="{{asset('assets/dashboard/images/svg-icon/price.png')}}" class="img-fluid" alt="layouts"><span>Pricing Plan</span>
                     </a>
                 </li>
+                <li>
+                    <a href="{{route('dashboard.review.index')}}">
+                        <img src="{{asset('assets/dashboard/images/svg-icon/price.png')}}" class="img-fluid" alt="layouts"><span>Reviews</span>
+                    </a>
+                </li>
 
                 <li>
                     <a>

@@ -85,7 +85,7 @@
                                                         <a href="{{route('front.course.subjects',$course->id)}}">{{$course->name}}</a>
                                                         <ul class="sub-menu">
                                                             @foreach($course->subjects()->paginate(3) as $topic)
-                                                                <li><a href="">{{$topic->name}}</a></li>
+                                                                <li><a href="{{route('questions_subjects',$topic->id)}}">{{$topic->name}}</a></li>
                                                             @endforeach
                                                         </ul>
                                                     </li>
@@ -94,6 +94,9 @@
                                         </li>
                                         <li class="rs-mega-menu mega-rs">
                                             <a href="{{route('plans')}}">Pricing</a>
+                                        </li>
+                                        <li class="rs-mega-menu mega-rs {{ request()->routeIs('terms') ? 'current-menu-item' : '' }}" >
+                                            <a class="text-white" href="{{route('terms')}}">Terms & Conditions</a>
                                         </li>
                                         <li class="rs-mega-menu mega-rs">
                                             <a href="{{route('free_trial')}}">Free Trial</a>

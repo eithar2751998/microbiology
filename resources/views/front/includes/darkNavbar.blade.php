@@ -50,7 +50,7 @@
             </div>
         </div>
         <!-- Topbar Area End -->
-
+{{--@dd( request()->routeIs('front.course.index') )--}}
         <!-- Menu Start -->
         <div class="menu-area menu-sticky" style="background: #273c66!important;">
             <div class="container-fluid">
@@ -74,29 +74,33 @@
                                 </div>
                                 <nav class="rs-menu">
                                     <ul class="nav-menu">
-                                        <li class="rs-mega-menu mega-rs  current-menu-item">
-                                            <a href="{{route('home')}}">Home</a>
+                                        <li class="rs-mega-menu mega-rs {{ request()->routeIs('home') ? 'current-menu-item' : '' }}">
+                                            <a class="text-white" href="{{route('home')}}">Home</a>
                                         </li>
-                                        <li class="menu-item-has-children">
-                                            <a href="#" style="color: #fff;">Courses</a>
+
+                                        <li class="menu-item-has-children {{ request()->routeIs('front.course.index') ? 'current-menu-item' : '' }}" >
+                                            <a href="#" class="text-white">Courses</a>
                                             <ul class="sub-menu">
                                                 @foreach($courses as $course)
                                                     <li class="menu-item-has-children">
-                                                        <a href="{{route('front.course.subjects',$course->id)}}">{{$course->name}}</a>
+                                                        <a  href="{{route('front.course.subjects',$course->id)}}">{{$course->name}}</a>
                                                         <ul class="sub-menu">
                                                             @foreach($course->subjects()->paginate(3) as $topic)
-                                                                <li><a href="">{{$topic->name}}</a></li>
+                                                                <li><a href="{{route('questions_subjects',$topic->id)}}">{{$topic->name}}</a></li>
                                                             @endforeach
                                                         </ul>
                                                     </li>
                                                 @endforeach
                                             </ul>
                                         </li>
-                                        <li class="rs-mega-menu mega-rs  current-menu-item">
-                                            <a href="{{route('plans')}}">PRO +</a>
+                                        <li class="rs-mega-menu mega-rs {{ request()->routeIs('plans') ? 'current-menu-item' : '' }}" >
+                                            <a class="text-white" href="{{route('plans')}}">Pricing</a>
                                         </li>
-                                        <li class="rs-mega-menu mega-rs ">
-                                             <a href="{{route('free_trial')}}">Free Trial</a>
+                                        <li class="rs-mega-menu mega-rs {{ request()->routeIs('terms') ? 'current-menu-item' : '' }}" >
+                                            <a class="text-white" href="{{route('terms')}}">Terms & Conditions</a>
+                                        </li>
+                                        <li class="rs-mega-menu mega-rs">
+                                            <a class="text-white" href="{{route('free_trial')}}">Free Trial</a>
                                         </li>
                                     </ul> <!-- //.nav-menu -->
                                 </nav>
