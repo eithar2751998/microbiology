@@ -5,6 +5,8 @@ use App\Http\Controllers\PayPalController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\Front\HomeController;
 
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,18 +25,16 @@ Route::get('authorized/google/callback', [App\Http\Controllers\Front\Auth\LoginW
 Route::get('authorized/facebook', [App\Http\Controllers\Front\Auth\LoginWithFacebookController::class, 'redirectToFacebook']);
 Route::get('authorized/facebook/callback', [App\Http\Controllers\Front\Auth\LoginWithFacebookController::class, 'handleFacebookCallback']);
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('contact_us',[HomeController::class,'contactUs'])->name('contact_us');
-Route::post('send/contact_us',[HomeController::class,'sendContactUs'])->name('send_contact_us');
+Route::get('/', [App\Http\Controllers\Front\HomeController::class, 'index'])->name('home');
 
 Route::get('courses', [App\Http\Controllers\Front\CourseController::class, 'index'])->name('front.course.index');
 Route::get('course/{id}/subjects', [App\Http\Controllers\Front\CourseController::class, 'subjects'])->name('front.course.subjects');
 
 Route::get('pricing', [App\Http\Controllers\Front\PricingPlanController::class, 'index'])->name('plans');
 
-//Route::get('/home', function () {
-//    return view('dashboard');
-//})->name('dashboard');
+Route::get('/home', function () {
+    return view('dashboard');
+})->name('dashboard');
 
 //Route::get('/', function () {
 //    return view('welcome');
@@ -50,8 +50,11 @@ Route::get('payment/{plan}',[PayPalController::class,'payment'])->name('payment'
 Route::get('cancel',[PayPalController::class,'cancel'])->name('payment.cancel');
 Route::get('payment/success',[PayPalController::class,'success'])->name('payment.success');
 
+Route::get('contact_us',[HomeController::class,'contactUs'])->name('contact_us');
+Route::post('send/contact_us',[HomeController::class,'sendContactUs'])->name('send_contact_us');
+
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
-    Route::get('/', function () {
-        return view('front.index');
-    })->name('home');
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
 });
