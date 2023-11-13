@@ -52,8 +52,8 @@
         document.addEventListener('livewire:load', function () {
             Livewire.on('showModal', function () {
                 Swal.fire({
-                    title: 'Completed Free Questions',
-                    text: 'If you need continue',
+                    title: 'Completed',
+                    text: 'Upgrade Your Plan To Continue',
                     icon: 'success',
                 }).then((result) => {
                     window.location.href = '/pricing';
