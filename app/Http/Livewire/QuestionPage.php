@@ -30,7 +30,7 @@ class QuestionPage extends Component
                 $user = User::find(Auth::user()->id);
                 $plan = $user->plans->last();
                 if(!empty($plan)){
-                    if (Route::current()->uri() == "questions/subjects/{id}") {
+                    if (Route::current()->uri() == "questions/subjects") {
                         $id = $request->segment(3);
                         $topic = Subject::find($id);
                         $this->questions = $topic->questions()->inRandomOrder()->limit($plan->number_of_questions)->get();

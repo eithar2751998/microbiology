@@ -100,15 +100,17 @@
                 @foreach($courses as $course)
                         <div class="col-lg-4 col-md-6 mb-30">
                             <div class="subject-wrap bgc1">
-                                <img style="width: 142px;height: 117px" class="rounded-circle" src="{{asset('department/'.$course->name.'/'.$course->image)}}" alt="">
-                                <h4 class="title text-capitalize"><a href="#">{{$course->name}}</a></h4>
-                                <span class="course-qnty text-capitalize">
-                                @if($course->subjects()->count()<10)
-                                        0{{$course->subjects()->count()}} Topics
-                                    @else
-                                        {{$course->subjects()->count()}} Topics
-                                    @endif
-                            </span>
+                                <a href="{{route('front.course.subjects',$course->id)}}">
+                                    <img style="width: 142px;height: 117px" class="rounded-circle" src="{{asset('department/'.$course->name.'/'.$course->image)}}" alt="">
+                                    <h4 class="title text-capitalize"><a href="#">{{$course->name}}</a></h4>
+                                    <span class="course-qnty text-capitalize">
+                                    @if($course->subjects()->count()<10)
+                                            0{{$course->subjects()->count()}} Topics
+                                        @else
+                                            {{$course->subjects()->count()}} Topics
+                                        @endif
+                                    </span>
+                                </a>
                             </div>
                         </div>
                     @endforeach
