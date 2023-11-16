@@ -31,4 +31,11 @@
     </div>
     <!-- Blog Section End -->
 @endsection
+@section('footer')
+    @include('front.includes.footer')
+@endsection
+
+@section('scripts')
+
+@endsection
 
