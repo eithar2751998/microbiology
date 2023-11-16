@@ -4018,6 +4018,13 @@
     .rs-inner-blog .widget-area .recent-posts-widget .show-featured .post-img {
         margin-bottom: 15px;
     }
+    .rs-slider.main-home .slider-content.slide6, .rs-slider.main-home .slider-content.slide5, .rs-slider.main-home .slider-content.slide4,
+    .rs-slider.main-home .slider-content.slide3, .rs-slider.main-home .slider-content.slide2, .rs-slider.main-home .slider-content.slide1{
+        background-size: contain;
+    }
+    #dark{
+        background-color: transparent;
+    }
 }
 
 
