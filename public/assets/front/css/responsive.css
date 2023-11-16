@@ -4027,8 +4027,13 @@
     .rs-slider.main-home .slider-content.slide3, .rs-slider.main-home .slider-content.slide2, .rs-slider.main-home .slider-content.slide1{
         background-size: contain;
     }
+    .rs-slider .slider-content a {
+        margin-top: 0px;
+        /*margin-left: 40px;*/
+        /*font-size: 10px;*/
+    }
     #dark{
-        background-color: transparent;
+        background-color: #26262a;
     }
 }
 
