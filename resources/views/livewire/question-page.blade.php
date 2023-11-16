@@ -1,23 +1,23 @@
+@if(!empty($questions))
+    <main class="overflow-hidden">
+        <div class="container">
+            <div class="wrapper popreveal">
+                <div class="main-heading">
+                    {{$this->key+1}}
 
-<main class="overflow-hidden">
-    <div class="container">
-        <div class="wrapper popreveal">
-            <div class="main-heading">
-                {{$this->key+1}}
+                    <br>
+                    {!! $questions[$key]->title !!}
+                </div>
+                <div class="pole-form">
 
-                <br>
-                {!! $questions[$key]->title !!}
-            </div>
-            <div class="pole-form">
-
-                <!-- form -->
-                <form class="show-section" id="steps" method="post">
+                    <!-- form -->
+                    <form class="show-section" id="steps" method="post">
 
 
-                    <!-- step 1 -->
-{{--                    <fieldset id="step1" class="fields">--}}
+                        <!-- step 1 -->
+                        {{--                    <fieldset id="step1" class="fields">--}}
                         @foreach($questions[$key]->answers as $index => $answer)
-{{--                            {{dd($questions[$key]->answers)}}--}}
+                            {{--                            {{dd($questions[$key]->answers)}}--}}
                             <div class=" radiofield revealfield">
                                 <input type="radio" name="opt1" id="{{ $answer->id }}" value="{{ $answer->id }}"
                                        wire:model="questions.{{ $key }}.selected_answer"
@@ -28,20 +28,32 @@
                         @endforeach
 
                         <!-- next btn -->
-{{--                        <button type="button" name="next" wire:click="next()"> Next </button>--}}
+                        {{--                        <button type="button" name="next" wire:click="next()"> Next </button>--}}
                         <div class="next_prev">
                             <button type="button" class="next btn-primary" wire:click="next">
                                 <span>Next</span>
                             </button>
                         </div>
-{{--                    </fieldset>--}}
-                </form>
+                        {{--                    </fieldset>--}}
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
-</main>
+    </main>
+@endif
 @push('js')
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    @if($question_count == 0)
+        <script>
+            Swal.fire({
+                title: 'Please',
+                text: 'Login or Upgrade Your Plan To Continue',
+                icon: 'warning',
+            }).then((result) => {
+                window.location.href = '/pricing';
+            });
+        </script>
+    @endif
     <script>
         document.addEventListener('livewire:load', function() {
             Livewire.on('test', function(selected_answer) {

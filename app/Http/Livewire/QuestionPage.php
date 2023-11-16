@@ -21,16 +21,15 @@ class QuestionPage extends Component
     ];
 
     public function mount(Request $request){
-            if(Route::current()->uri() == "free-trial"){
+        if(Route::current()->uri() == "free-trial"){
             $this->questions = Question::where('free',1)->inRandomOrder()->limit(10)->get();
         }
         else{
-
             if(auth()->user()){
                 $user = User::find(Auth::user()->id);
                 $plan = $user->plans->last();
                 if(!empty($plan)){
-                    if (Route::current()->uri() == "questions/subjects") {
+                    if (Route::current()->uri() == "questions/subjects/{id}") {
                         $id = $request->segment(3);
                         $topic = Subject::find($id);
                         $this->questions = $topic->questions()->inRandomOrder()->limit($plan->number_of_questions)->get();
@@ -43,9 +42,15 @@ class QuestionPage extends Component
                 }
             }
             else{
-                $this->questions = Question::where('free',1)->inRandomOrder()->limit(10)->get();
+                if (Route::current()->uri() == "questions/subjects/{id}") {
+                    $this->question_count = 0;
+                }
+                else{
+                    $this->questions = Question::where('free',1)->inRandomOrder()->limit(10)->get();
+                    $this->question_count  = $this->questions->count();
+                }
             }
-            $this->question_count  = $this->questions->count();
+
         }
 
     }
