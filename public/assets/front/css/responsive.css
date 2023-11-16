@@ -2827,7 +2827,7 @@
     }
     .rs-slider .slider-content a {
         margin-top: 0;
-        margin-left: 40px;
+        margin-left: 25px;
         font-size: 10px;
     }
     .readon.orange-btn.main-home {
@@ -3180,11 +3180,11 @@
     #dark{
         background-color: #26262a;
     }
-    .rs-slider .slider-content a {
-        margin-top: 90px;
-        margin-left: 20px;
-        /*font-size: 10px;*/
-    }
+    /*.rs-slider .slider-content a {*/
+    /*    margin-top: 90px;*/
+    /*    margin-left: 20px;*/
+    /*    !*font-size: 10px;*!*/
+    /*}*/
 
 }
 
