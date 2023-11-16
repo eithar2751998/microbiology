@@ -64,7 +64,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-8 text-center">
+                    <div class="col-lg-8 text-center" id="dark">
                         <div class="rs-menu-area">
                             <div class="main-menu pr-90 md-pr-15">
                                 <div class="mobile-menu">
