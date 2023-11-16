@@ -17,7 +17,7 @@
                     <div class="container">
                         <div class="content-part">
                             <div class="sl-btn wow fadeInUp" data-wow-delay="900ms" data-wow-duration="2000ms">
-<a class="readon orange-btn main-home float-left" style="margin-top: 250px" href="{{route('front.course.index')}}">Find Courses</a>                            </div>
+                                <a class="readon orange-btn main-home float-left" style="margin-top: 250px" href="{{route('front.course.index')}}">Find Courses</a>                            </div>
                         </div>
                     </div>
                 </div>
@@ -34,7 +34,7 @@
                     <div class="container">
                         <div class="content-part">
                             <div class="sl-btn wow fadeInUp" data-wow-delay="900ms" data-wow-duration="2000ms">
-<a class="readon orange-btn main-home float-left" style="margin-top: 250px" href="{{route('front.course.index')}}">Find Courses</a>                            </div>
+                                <a class="readon orange-btn main-home float-left" style="margin-top: 250px" href="{{route('front.course.index')}}">Find Courses</a>                            </div>
                         </div>
                     </div>
                 </div>
@@ -42,7 +42,7 @@
                     <div class="container">
                         <div class="content-part">
                             <div class="sl-btn wow fadeInUp" data-wow-delay="900ms" data-wow-duration="2000ms">
-<a class="readon orange-btn main-home float-left" style="margin-top: 250px" href="{{route('front.course.index')}}">Find Courses</a>                            </div>
+                                <a class="readon orange-btn main-home float-left" style="margin-top: 250px" href="{{route('front.course.index')}}">Find Courses</a>                            </div>
                         </div>
                     </div>
                 </div>
@@ -50,7 +50,7 @@
                     <div class="container">
                         <div class="content-part">
                             <div class="sl-btn wow fadeInUp" data-wow-delay="900ms" data-wow-duration="2000ms">
-<a class="readon orange-btn main-home float-left" style="margin-top: 250px" href="{{route('front.course.index')}}">Find Courses</a>                            </div>
+                                <a class="readon orange-btn main-home float-left" style="margin-top: 250px" href="{{route('front.course.index')}}">Find Courses</a>                            </div>
                         </div>
                     </div>
                 </div>
@@ -58,7 +58,7 @@
                     <div class="container">
                         <div class="content-part">
                             <div class="sl-btn wow fadeInUp" data-wow-delay="900ms" data-wow-duration="2000ms">
-<a class="readon orange-btn main-home float-left" style="margin-top: 250px" href="{{route('front.course.index')}}">Find Courses</a>                            </div>
+                                <a class="readon orange-btn main-home float-left" style="margin-top: 250px" href="{{route('front.course.index')}}">Find Courses</a>                            </div>
                         </div>
                     </div>
                 </div>
@@ -88,7 +88,7 @@
         <div class="rs-subject style1 pt-94 pb-70 md-pt-64 md-pb-40" id="courses">
             <div class="container">
                 <div class="sec-title mb-60 text-center md-mb-30">
-                    <div class="sub-title primary">Courses</div>
+                    <div class="sub-title primary ">Courses</div>
                     <h2 class="title mb-0">Our Top Courses</h2>
                 </div>
                 <div class="row">

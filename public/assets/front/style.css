@@ -1313,7 +1313,7 @@ ul.listing-style.modify li:before {
   width: auto;
 }
 .sec-title .sub-title {
-  font-size: 18px;
+  font-size: 25px;
   line-height: 28px;
   font-weight: 500;
   text-transform: uppercase;
@@ -5272,7 +5272,7 @@ body .modal-backdrop {
 }
 .rs-about.style4 .about-content .sub-title {
   color: #54647b;
-  font-size: 20px;
+  font-size: 30px;
   font-weight: 500;
   text-transform: capitalize;
   margin-bottom: 20px;
