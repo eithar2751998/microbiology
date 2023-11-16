@@ -4856,17 +4856,42 @@ body .modal-backdrop {
   margin-bottom: 65px;
 }
 .rs-slider.main-home .slider-content.slide1 {
-  background: url(../front/images/slider/main-home/1.1.jpg);
+  background: url(../front/images/slider/slider_images/slider_image1.png);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 }
 .rs-slider.main-home .slider-content.slide2 {
-  background: url(../front/images/slider/main-home/1.2.jpg);
+  background: url(../front/images/slider/slider_images/slider_image2.png);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 }
+.rs-slider.main-home .slider-content.slide3 {
+  background: url(../front/images/slider/slider_images/slider_image3.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.rs-slider.main-home .slider-content.slide4 {
+  background: url(../front/images/slider/slider_images/slider_image4.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.rs-slider.main-home .slider-content.slide5 {
+  background: url(../front/images/slider/slider_images/slider_image5.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.rs-slider.main-home .slider-content.slide6 {
+  background: url(../front/images/slider/slider_images/slider_image6.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 .rs-slider.main-home .owl-nav .owl-next,
 .rs-slider.main-home .owl-nav .owl-prev {
   position: absolute;
