@@ -23,6 +23,7 @@ class QuestionPage extends Component
     public function mount(Request $request){
         if(Route::current()->uri() == "free-trial"){
             $this->questions = Question::where('free',1)->inRandomOrder()->limit(10)->get();
+            $this->question_count  = $this->questions->count();
         }
         else{
             if(auth()->user()){
@@ -34,11 +35,14 @@ class QuestionPage extends Component
                         $topic = Subject::find($id);
                         $this->questions = $topic->questions()->inRandomOrder()->limit($plan->number_of_questions)->get();
                     }
-                    else
+                    else{}
                         $this->questions = Question::inRandomOrder()->limit($plan->number_of_questions)->get();
+
+                    $this->question_count  = $this->questions->count();
                 }
                 else{
                     $this->questions = Question::where('free',1)->inRandomOrder()->limit(10)->get();
+                    $this->question_count  = $this->questions->count();
                 }
             }
             else{
