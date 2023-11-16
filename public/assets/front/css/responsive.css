@@ -3180,6 +3180,11 @@
     #dark{
         background-color: #26262a;
     }
+    .rs-slider .slider-content a {
+        margin-top: 90px;
+        margin-left: 40px;
+        /*font-size: 10px;*/
+    }
 
 }
 
