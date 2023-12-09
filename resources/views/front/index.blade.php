@@ -79,8 +79,8 @@
                         <div class="about-intro">
                             <div class="sec-title text-center md-mb-30">
                                 <div class="sub-title primary">About Us</div>
-                                <h2 class="title mb-21">{{ $about->header }}</h2>
                             </div>
+                            <h2 class="title mb-21" style="color: #21a7d0">{{ $about->header }}</h2>
                             <div class="desc big text-justify">{!! $about->content !!}</div>
                         </div>
                     </div>
@@ -94,16 +94,16 @@
             <div class="container">
                 <div class="sec-title mb-60 text-center md-mb-30">
                     <div class="sub-title primary ">Courses</div>
-                    <h2 class="title mb-0">Our Top Courses</h2>
+{{--                    <h2 class="title mb-0">Our Top Courses</h2>--}}
                 </div>
                 <div class="row">
                 @foreach($courses as $course)
                         <div class="col-lg-4 col-md-6 mb-30">
                             <div class="subject-wrap bgc1">
                                 <a href="{{route('front.course.subjects',$course->id)}}">
-                                    <img style="width: 142px;height: 117px" class="rounded-circle" src="{{asset('department/'.$course->name.'/'.$course->image)}}" alt="">
+                                    <img style="width: 250px;height: 195px" class="rounded-circle" src="{{asset('department/'.$course->name.'/'.$course->image)}}" alt="">
                                     <h4 class="title text-capitalize"><a href="#">{{$course->name}}</a></h4>
-                                    <span class="course-qnty text-capitalize">
+                                    <span class="course-qnty text-capitalize text-white">
                                     @if($course->subjects()->count()<10)
                                             0{{$course->subjects()->count()}} Topics
                                         @else
@@ -127,7 +127,7 @@
             <div class="container">
                 <div class="sec-title mb-60 text-center md-mb-30">
                     <div class="sub-title primary text-capitalize">Top Coming Soon</div>
-                    <h2 class="title mb-0 text-capitalize">Popular coming soon</h2>
+{{--                    <h2 class="title mb-0 text-capitalize">Popular coming soon</h2>--}}
                 </div>
                 <div class="row">
                     @foreach($comingSoons as $comingSoon)
@@ -161,8 +161,8 @@
         <div class="rs-testimonial style3" id="reviews">
             <div class="container">
                 <div class="sec-title mb-60 text-center md-mb-30">
-                    <div class="sub-title primary">Student Reviews</div>
-                    <h2 class="title mb-0">What Our Students Says</h2>
+                    <div class="sub-title primary"> Reviews</div>
+{{--                    <h2 class="title mb-0">What Our Students Says</h2>--}}
                 </div>
                 <div class="rs-carousel owl-carousel" data-loop="true" data-items="2" data-margin="30" data-autoplay="true" data-hoverpause="true" data-autoplay-timeout="5000" data-smart-speed="800" data-dots="true" data-nav="false" data-nav-speed="false" data-center-mode="false" data-mobile-device="1" data-mobile-device-nav="false" data-mobile-device-dots="false" data-ipad-device="2" data-ipad-device-nav="false" data-ipad-device-dots="false" data-ipad-device2="1" data-ipad-device-nav2="false" data-ipad-device-dots2="false" data-md-device="2" data-md-device-nav="false" data-md-device-dots="true">
                     @foreach($reviews as $review)
@@ -171,8 +171,8 @@
                                 <div class="col-md-4">
                                     <div class="user-info">
                                         <img src="{{asset('assets/front/images/testimonial/style3/1.png')}}" alt="">
-                                        <h4 class="name">{{ $review->user->name }}</h4>
-                                        <span class="designation">Student</span>
+                                        <h4 class="name text-white" >{{ $review->user->name }}</h4>
+                                        <span class="designation text-white">Student</span>
 {{--                                        <ul class="ratings">--}}
 {{--                                            <li><i class="fa fa-star"></i></li>--}}
 {{--                                            <li><i class="fa fa-star"></i></li>--}}
@@ -183,7 +183,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-8">
-                                    <div class="desc">{{ $review->content }}</div>
+                                    <div class="desc text-white">{{ $review->content }}</div>
                                 </div>
                             </div>
                         </div>
@@ -202,7 +202,7 @@
             <div class="container">
                 <div class="sec-title mb-60 md-mb-30 text-center">
                     <div class="sub-title primary text-capitalize">Top Events </div>
-                    <h2 class="title mb-0 text-capitalize">Latest  Events</h2>
+{{--                    <h2 class="title mb-0 text-capitalize">Top Events</h2>--}}
                 </div>
                 <div class="row">
                     @foreach($upcomingEvents as $key => $event)

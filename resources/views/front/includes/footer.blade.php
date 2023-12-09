@@ -8,7 +8,7 @@
                         <li><a href="#rs-about">About Us</a></li>
                         <li><a href="#courses">Courses</a></li>
                         <li><a href="#coming_soon">Coming Soon</a></li>
-                        <li><a href="#reviews">Student Reviews</a></li>
+{{--                        <li><a href="#reviews">Student Reviews</a></li>--}}
                         <li><a href="#events">Top Events</a></li>
                     </ul>
                 </div>
@@ -69,7 +69,7 @@
                 </div>
                 <div class="col-lg-4 md-mb-20">
                     <div class="copyright text-center md-text-left">
-                        <p>&copy; 2023 All Rights Reserved. Developed By <a href="https://success-micro.com/">Microbiology</a></p>
+                        <p>&copy; 2023 All Rights Reserved. Developed By <a href="https://success-micro.com/">success-micro.com</a></p>
                     </div>
                 </div>
                 <div class="col-lg-4 text-right md-text-left">

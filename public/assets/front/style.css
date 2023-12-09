@@ -813,11 +813,11 @@ blockquote p {
   border-radius: 30px;
   display: inline-block;
   text-transform: uppercase;
-  font-size: 16px;
+  font-size: 30px;
   font-family: 'Rubik', sans-serif;
   font-weight: 500;
   color: #ffffff;
-  background: #21a7d0;
+  background: #273c66;
   position: relative;
 }
 .readon3:after,
@@ -826,8 +826,8 @@ blockquote p {
   content: '';
   top: 50%;
   transform: translateY(-50%);
-  width: 5px;
-  height: 5px;
+  width: 11px;
+  height: 11px;
   border-radius: 50%;
   background: #ffffff;
   transition: all 0.3s ease;
@@ -1313,14 +1313,14 @@ ul.listing-style.modify li:before {
   width: auto;
 }
 .sec-title .sub-title {
-  font-size: 25px;
+  font-size: 45px;
   line-height: 28px;
   font-weight: 500;
   text-transform: uppercase;
   margin-bottom: 8px;
 }
 .sec-title .sub-title.primary {
-  color: #21a7d0;
+  color: #273c66;
 }
 .sec-title .sub-title.secondary {
   color: #273c66;
@@ -4945,6 +4945,7 @@ body .modal-backdrop {
 }
 .rs-breadcrumbs .breadcrumbs-img img {
   width: 100%;
+    background-color: #273c66;
 }
 .rs-breadcrumbs .breadcrumbs-text {
   position: absolute;
@@ -5789,7 +5790,7 @@ body .modal-backdrop {
   margin: 20px 0 5px 0;
 }
 .rs-subject.style1 .subject-wrap .title a {
-  color: #111111;
+  color: #FFFFFF;
 }
 .rs-subject.style1 .subject-wrap .title a:hover {
   opacity: .8;
@@ -5799,7 +5800,7 @@ body .modal-backdrop {
   transform: translateY(-7px);
 }
 .rs-subject.style1 .subject-wrap.bgc1 {
-  background: #d3fcf8;
+  background: #273c66;
 }
 .rs-subject.style1 .subject-wrap.bgc2 {
   background: #16aaca;
@@ -6561,7 +6562,7 @@ body .modal-backdrop {
 }
 .rs-popular-courses.style4 .sec-title .sub-title {
   text-transform: capitalize;
-  font-size: 20px;
+  font-size: 45px;
   font-weight: 500;
   color: #485973;
 }
@@ -9049,7 +9050,7 @@ body .modal-backdrop {
   top: -13px;
 }
 .rs-testimonial.style3 .testi-item {
-  background-color: #f3f8f9;
+  background-color: #273c66;
   background-image: url(../front/images/testimonial/cloud-pattern.png);
   background-repeat: no-repeat;
   background-size: 130%;
@@ -9065,11 +9066,14 @@ body .modal-backdrop {
 .rs-testimonial.style3 .testi-item .user-info .name {
   font-size: 20px;
   margin-bottom: 5px;
+  color : #ffff;
+
 }
 .rs-testimonial.style3 .testi-item .user-info .designation {
   font-size: 14px;
   color: #555555;
   font-weight: 500;
+  color : #ffff;
 }
 .rs-testimonial.style3 .testi-item .user-info .ratings {
   margin-top: 10px;
@@ -9083,6 +9087,7 @@ body .modal-backdrop {
 .rs-testimonial.style3 .testi-item .desc {
   font-size: 17px;
   font-style: italic;
+  color : #ffff;
 }
 .rs-testimonial.style3 .owl-dots {
   text-align: center;
