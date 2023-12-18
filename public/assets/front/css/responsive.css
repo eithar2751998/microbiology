@@ -1228,8 +1228,8 @@
     }
     .rs-slider .slider-content a {
         margin-top: 195px;
-        margin-left: 95px;
-        /*font-size: 10px;*/
+        margin-left: -40px;
+        font-size: 30px;
     }
 }
 

@@ -79,8 +79,8 @@
                         <div class="about-intro">
                             <div class="sec-title text-center md-mb-30">
                                 <div class="sub-title primary">About Us</div>
+                                <h2 class="title mb-21 mt-21" style="color: #273c66">{{ $about->header }}</h2>
                             </div>
-                            <h2 class="title mb-21" style="color: #21a7d0">{{ $about->header }}</h2>
                             <div class="desc big text-justify">{!! $about->content !!}</div>
                         </div>
                     </div>
@@ -126,30 +126,75 @@
         <div class="rs-popular-courses style2 pt-94 pb-200 md-pt-64 md-pb-90" id="coming_soon">
             <div class="container">
                 <div class="sec-title mb-60 text-center md-mb-30">
-                    <div class="sub-title primary text-capitalize">Top Coming Soon</div>
+                    <div class="sub-title primary text-capitalize"> Coming Soon</div>
 {{--                    <h2 class="title mb-0 text-capitalize">Popular coming soon</h2>--}}
                 </div>
                 <div class="row">
                     @foreach($comingSoons as $comingSoon)
-                        <div class="col-lg-4 col-md-6 mb-30">
-                            <div class="course-wrap">
-                                <div class="front-part">
-                                    <div class="img-part">
-                                        <img style="width: 262px; height: 291px;" src="{{asset('comingSoon/'.$comingSoon->title.'/'.$comingSoon->image)}}" alt="">
+                        @if(count($comingSoons) == 1)
+                            <div class="col-lg-4"></div>
+                            <div class="col-lg-4 col-md-6 mb-30">
+                                <div class="course-wrap">
+                                    <div class="front-part">
+                                        <div class="img-part">
+                                            <img style="width: 262px; height: 291px;" src="{{asset('comingSoon/'.$comingSoon->title.'/'.$comingSoon->image)}}" alt="">
+                                        </div>
+                                        <div class="content-part">
+                                            {{--                                <a class="categorie" href="#">Web Development</a>--}}
+                                            <h4 class="title text-white"><a class="text-white" href="course-single.html">{{$comingSoon->title}}</a></h4>
+                                        </div>
                                     </div>
-                                    <div class="content-part">
-                                        {{--                                <a class="categorie" href="#">Web Development</a>--}}
-                                        <h4 class="title"><a href="course-single.html">{{$comingSoon->title}}</a></h4>
+                                    <div class="inner-part">
+                                        <div class="content-part">
+                                            <h4 class="title"><a href=""></a></h4>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="inner-part">
-                                    <div class="content-part">
-                                        <h4 class="title"><a href=""></a></h4>
-                                    </div>
-                                </div>
 
+                                </div>
                             </div>
-                        </div>
+                            <div class="col-lg-4"></div>
+                        @elseif(count($comingSoons) == 2)
+                            <div class="col-lg-6 col-md-6 mb-30">
+                                <div class="course-wrap">
+                                    <div class="front-part">
+                                        <div class="img-part">
+                                            <img style="width: 262px; height: 291px;" src="{{asset('comingSoon/'.$comingSoon->title.'/'.$comingSoon->image)}}" alt="">
+                                        </div>
+                                        <div class="content-part">
+                                            {{--                                <a class="categorie" href="#">Web Development</a>--}}
+                                            <h4 class="title text-white"><a class="text-white" href="course-single.html">{{$comingSoon->title}}</a></h4>
+                                        </div>
+                                    </div>
+                                    <div class="inner-part">
+                                        <div class="content-part">
+                                            <h4 class="title"><a href=""></a></h4>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        @else
+                            <div class="col-lg-4 col-md-6 mb-30">
+                                <div class="course-wrap">
+                                    <div class="front-part">
+                                        <div class="img-part">
+                                            <img style="width: 262px; height: 291px;" src="{{asset('comingSoon/'.$comingSoon->title.'/'.$comingSoon->image)}}" alt="">
+                                        </div>
+                                        <div class="content-part">
+                                            {{--                                <a class="categorie" href="#">Web Development</a>--}}
+                                            <h4 class="title text-white"><a class="text-white" href="course-single.html">{{$comingSoon->title}}</a></h4>
+                                        </div>
+                                    </div>
+                                    <div class="inner-part">
+                                        <div class="content-part">
+                                            <h4 class="title"><a href=""></a></h4>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        @endif
+
                     @endforeach
                 </div>
 

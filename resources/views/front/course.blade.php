@@ -34,11 +34,11 @@
                                   <div class="img-part">
                                       <img src="{{asset('department/'.$course->name.'/'.$course->image)}}" alt="" style="width: 358px; height: 220px">
                                   </div>
-                                  <div class="content-part">
-                                      <h3 class="title"><a href=""> {{$course->name}} </a></h3>
+                                  <div class="content-part" style="background-color: #273c66">
+                                      <h3 class="title"><a href="" class="text-white"> {{$course->name}} </a></h3>
                                       <div class="bottom-part">
                                           <div class="btn-part">
-                                              <a href="{{ route('front.course.subjects', $course->id) }}">Topics<i class="flaticon-right-arrow"></i></a>
+                                              <a href="{{ route('front.course.subjects', $course->id) }}" class="text-white"> Topics<i class="flaticon-right-arrow"></i></a>
                                           </div>
                                       </div>
                                   </div>

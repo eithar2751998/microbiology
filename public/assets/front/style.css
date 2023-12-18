@@ -4995,16 +4995,20 @@ body .modal-backdrop {
 }
 .rs-breadcrumbs .breadcrumbs-text.white-color .page-title {
   color: #ffffff;
+  font-size: 65px;
 }
 .rs-breadcrumbs .breadcrumbs-text.white-color ul li {
   color: #ffffff;
+  font-size: 30px;
 }
 .rs-breadcrumbs .breadcrumbs-text.white-color ul li a {
   color: #ffffff;
+  font-size: 30px;
 }
 .rs-breadcrumbs .breadcrumbs-text.white-color ul li a:before,
 .rs-breadcrumbs .breadcrumbs-text.white-color ul li a:after {
   background-color: #ffffff;
+    font-size: 30px;
 }
 .rs-breadcrumbs .breadcrumbs-text.white-color ul li a:before {
   right: 13px;
@@ -6348,7 +6352,7 @@ body .modal-backdrop {
   transform: scale(1.1);
 }
 .rs-popular-courses.style2 .course-wrap {
-  background: #c7e8f0;
+  background: #273c66;
   position: relative;
   border-radius: 10px;
   text-align: center;
@@ -6460,7 +6464,7 @@ body .modal-backdrop {
   border-radius: 50%;
   transition: all 0.3s ease;
   z-index: 0;
-  background: #b5e2ec;
+  background: #273c66;
 }
 .rs-popular-courses.style2 .course-wrap:after {
   width: 146px;
@@ -6475,7 +6479,7 @@ body .modal-backdrop {
   top: -80px;
 }
 .rs-popular-courses.style2 .course-wrap:hover {
-  background: #16aaca;
+  background: #273c66;
 }
 .rs-popular-courses.style2 .course-wrap:hover .front-part {
   opacity: 0;
@@ -6488,7 +6492,7 @@ body .modal-backdrop {
 }
 .rs-popular-courses.style2 .course-wrap:hover:after,
 .rs-popular-courses.style2 .course-wrap:hover:before {
-  background: #1ca6c7;
+  background: #273c66;
 }
 .rs-popular-courses.style3 .courses-item {
   border: 1px solid #dfe9eb;
