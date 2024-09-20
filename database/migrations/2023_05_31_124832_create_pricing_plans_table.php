@@ -28,6 +28,8 @@ return new class extends Migration
             $table->boolean('is_featured')->default(false);
             $table->integer('order')->default(0);
             $table->integer('status')->default(1);
+            $table->string('product_reference_id')->nullable();
+            $table->string('plan_reference_id')->nullable();
             $table->timestamps();
         });
     }
