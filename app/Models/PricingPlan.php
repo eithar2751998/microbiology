@@ -20,6 +20,8 @@ class PricingPlan extends Model
         'max_users',
         'trial_days',
         'billing_cycle',
-        'description'
+        'description',
+        'product_reference_id',
+        'plan_reference_id'
     ];
 }
