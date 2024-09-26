@@ -7,6 +7,7 @@ use App\Models\Commingsoon;
 use App\Models\Department;
 use App\Models\Event;
 use App\Models\Review;
+use App\Services\Paypal;
 use Carbon\Carbon;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
@@ -32,6 +33,10 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Paginator::useBootstrap();
+
+        $this->app->singleton(Paypal::class, function() {
+            return new Paypal();
+        });
 
         View::composer('*', function($view)
         {

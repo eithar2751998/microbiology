@@ -4,12 +4,13 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Models\PricingPlan;
+use App\Services\Paypal;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Symfony\Component\Process\Process;
+use Illuminate\Support\Facades\DB;
 
 class PricingPlanController extends Controller
 {
@@ -40,7 +41,7 @@ class PricingPlanController extends Controller
      * @param Request $request
      * @return RedirectResponse
      */
-    public function store(Request $request)
+    public function store(Request $request, Paypal $service)
     {
         try {
             $planData = [
@@ -52,11 +53,22 @@ class PricingPlanController extends Controller
                 'trial_days' => $request->input('trial_days'),
             ];
 
-            PricingPlan::create($planData);
+            DB::transaction(function() use($planData, $service) {
+                $product = $service->createProduct($planData['name']);
+
+                $planData['product_reference_id'] = $product['id'];
+
+                $plan = PricingPlan::create($planData);
+
+                $paymentPlan = $service->createPlan($plan);
+
+                $plan->update([
+                    'plan_reference_id' => $paymentPlan['id'],
+                ]);
+            }, 3);
 
             return redirect()->route('dashboard.pricing.index')->with('success', 'Pricing plan created successfully.');
         }catch (\Exception $e) {
-            dd($e);
             return redirect()->route('dashboard.pricing.index')->with(['error' => __('global.data_error')]);
         }
 
